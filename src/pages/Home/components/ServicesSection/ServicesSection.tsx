@@ -24,7 +24,6 @@ function ServicesSection() {
   const [selectedService, setSelectedService] =
     createSignal<ServiceType | null>(null);
   const [currentIndex, setCurrentIndex] = createSignal(-1);
-  const [isAnimationStarted, setIsAnimationStarted] = createSignal(false);
 
   const handleCardClick = (service: ServiceType, index: number) => {
     setSelectedService(service);
@@ -43,16 +42,14 @@ function ServicesSection() {
     const sectionHeight = window.innerHeight;
 
     if (scrollPosition >= sectionTop) {
-      setIsAnimationStarted(true);
-      document.documentElement.style.scrollBehavior = "smooth"; // スムーススクロールを有効にする
+      document.documentElement.style.scrollBehavior = "smooth";
       const index = Math.round((scrollPosition - sectionTop) / sectionHeight);
       setCurrentIndex(index);
       setSelectedService(services[index]);
     } else {
-      setIsAnimationStarted(false);
       setCurrentIndex(-1);
       setSelectedService(null);
-      document.documentElement.style.scrollBehavior = "auto"; // スムーススクロールを無効にする
+      document.documentElement.style.scrollBehavior = "auto";
     }
   };
 
