@@ -1,4 +1,11 @@
-import { Component, For, onMount, onCleanup } from "solid-js";
+import {
+  Component,
+  For,
+  onMount,
+  onCleanup,
+  createSignal,
+  createEffect,
+} from "solid-js";
 import ProductCard from "../ProductCard/ProductCard";
 import { GridContainer } from "./ProductGrid.styled";
 import { Product } from "../../../../types/product";
@@ -10,22 +17,23 @@ type ProductGridProps = {
 };
 
 const ProductGrid: Component<ProductGridProps> = (props) => {
-  // itemsPerRowシグナルを削除し、代わりに通常の変数を使用
-  let itemsPerRow = 5;
+  const [itemsPerRow, setItemsPerRow] = createSignal(5);
 
   const updateItemsPerRow = () => {
-    if (window.innerWidth <= 768) {
-      itemsPerRow = 1;
-    } else if (window.innerWidth <= 1200) {
-      itemsPerRow = 3;
+    if (window.innerWidth < 768) {
+      setItemsPerRow(3);
+    } else if (window.innerWidth < 1024) {
+      setItemsPerRow(4);
     } else {
-      itemsPerRow = 5;
+      setItemsPerRow(5);
     }
-    // ここでitemsPerRowを使用して何か処理を行う場合は追加してください
   };
 
-  onMount(() => {
+  createEffect(() => {
     updateItemsPerRow();
+  });
+
+  onMount(() => {
     window.addEventListener("resize", updateItemsPerRow);
   });
 
@@ -39,7 +47,7 @@ const ProductGrid: Component<ProductGridProps> = (props) => {
   };
 
   return (
-    <GridContainer>
+    <GridContainer itemsPerRow={itemsPerRow()}>
       <For each={displayedProducts()}>
         {(product) => (
           <ProductCard
