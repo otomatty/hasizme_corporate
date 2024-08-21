@@ -1,16 +1,33 @@
 import { createSignal, createEffect, For } from "solid-js";
-import { NewsContainer, NewsTitle, NewsContent } from "./NewsSection.styled";
+import {
+  NewsContainer,
+  NewsTitle,
+  NewsList,
+  NewsItem,
+  NewsImage,
+  NewsDate,
+  NewsItemTitle,
+} from "./NewsSection.styled";
 
-interface NewsItem {
+interface NewsItemData {
   title: string;
   link: string;
-  description: string;
   pubDate: string;
+  enclosure?: {
+    url: string;
+    type: string;
+  };
 }
 
 function NewsSection() {
-  const [news, setNews] = createSignal<NewsItem[]>([]);
+  const [news, setNews] = createSignal<NewsItemData[]>([]);
   const [error, setError] = createSignal<string | null>(null);
+
+  const stripHtml = (html: string) => {
+    const tmp = document.createElement("DIV");
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || "";
+  };
 
   createEffect(async () => {
     try {
@@ -33,25 +50,38 @@ function NewsSection() {
     <NewsContainer>
       <NewsTitle>Latest News</NewsTitle>
       {error() && <p style="color: red;">{error()}</p>}
-      <NewsContent>
-        {news().length === 0 ? (
-          <p>ニュースを読み込んでいます...</p>
-        ) : (
+      {news().length === 0 ? (
+        <p>ニュースを読み込んでいます...</p>
+      ) : (
+        <NewsList>
           <For each={news()}>
             {(item) => (
-              <div>
-                <h3>
-                  <a href={item.link} target="_blank" rel="noopener noreferrer">
-                    {item.title}
-                  </a>
-                </h3>
-                <p>{item.description}</p>
-                <small>{new Date(item.pubDate).toLocaleDateString()}</small>
-              </div>
+              <NewsItem>
+                {item.enclosure && item.enclosure.type.startsWith("image/") && (
+                  <NewsImage
+                    src={item.enclosure.url}
+                    alt={stripHtml(item.title)}
+                  />
+                )}
+                <div>
+                  <NewsItemTitle>
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {stripHtml(item.title)}
+                    </a>
+                  </NewsItemTitle>
+                  <NewsDate>
+                    {new Date(item.pubDate).toLocaleDateString("ja-JP")}
+                  </NewsDate>
+                </div>
+              </NewsItem>
             )}
           </For>
-        )}
-      </NewsContent>
+        </NewsList>
+      )}
     </NewsContainer>
   );
 }
