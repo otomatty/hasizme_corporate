@@ -8,6 +8,7 @@ import {
   CareerCardLink,
 } from "./CareersSection.styled";
 import Container from "../../../../components/Container/Container";
+import { A } from "@solidjs/router";
 
 const careerData = [
   {
@@ -41,7 +42,9 @@ function CareersSection() {
               <CareerCardDescription>
                 {career.description}
               </CareerCardDescription>
-              <CareerCardLink href={career.link}>詳細を見る</CareerCardLink>
+              <CareerCardLink as={A} href={career.link}>
+                詳細を見る
+              </CareerCardLink>
             </CareerCard>
           ))}
         </CareersSectionContent>

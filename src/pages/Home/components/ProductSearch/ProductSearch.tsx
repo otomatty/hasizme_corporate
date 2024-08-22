@@ -4,13 +4,12 @@ import {
   SearchInput,
   SuggestionList,
   SuggestionItem,
-  SearchButton,
-  ResetButton,
   SearchInputContainer,
-  ButtonText,
+  ButtonContainer,
 } from "./ProductSearch.styled";
 import products from "../../../../data/productsData";
 import { AiOutlineSearch, AiOutlineUndo } from "solid-icons/ai";
+import Button from "../../../../components/Button/Button";
 
 const hiraganaToKatakana = (str: string): string => {
   return str.replace(/[\u3041-\u3096]/g, function (match) {
@@ -79,14 +78,22 @@ const ProductSearch: Component<ProductSearchProps> = (props) => {
           value={searchTerm()}
           onInput={handleSearch}
         />
-        <SearchButton onClick={handleSearchButtonClick}>
-          <AiOutlineSearch />
-          <ButtonText>検索</ButtonText>
-        </SearchButton>
-        <ResetButton onClick={handleResetButtonClick}>
-          <AiOutlineUndo />
-          <ButtonText>リセット</ButtonText>
-        </ResetButton>
+        <ButtonContainer>
+          <Button
+            onClick={handleSearchButtonClick}
+            icon={<AiOutlineSearch />}
+            color="primary"
+          >
+            検索
+          </Button>
+          <Button
+            onClick={handleResetButtonClick}
+            icon={<AiOutlineUndo />}
+            color="secondary"
+          >
+            リセット
+          </Button>
+        </ButtonContainer>
       </SearchInputContainer>
       {suggestions().length > 0 && (
         <SuggestionList>

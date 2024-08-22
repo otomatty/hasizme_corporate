@@ -18,7 +18,7 @@ const ProductSort: Component<ProductSortProps> = (props) => {
     <SortContainer>
       <SortSelect value={props.value} onChange={handleSort}>
         <option value="recommended">おすすめ順</option>
-        <option value="date">登録日順</option>
+        <option value="date">新しい順</option>
         <option value="title">タイトル順</option>
       </SortSelect>
     </SortContainer>

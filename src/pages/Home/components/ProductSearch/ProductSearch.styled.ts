@@ -10,6 +10,8 @@ export const SearchContainer = styled("div")`
 export const SearchInputContainer = styled("div")`
   display: flex;
   align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
 `;
 
 export const SearchInput = styled("input")`
@@ -18,6 +20,11 @@ export const SearchInput = styled("input")`
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 1rem;
+`;
+
+export const ButtonContainer = styled("div")`
+  display: flex;
+  gap: 0.5rem;
 `;
 
 export const SearchButton = styled("button")`
@@ -40,7 +47,7 @@ export const ResetButton = styled("button")`
   display: flex;
   align-items: center;
   padding: 0.5rem 1rem;
-  background-color: #6c757d;
+  background-color: #a0a0a0;
   color: white;
   border: none;
   border-radius: 4px;

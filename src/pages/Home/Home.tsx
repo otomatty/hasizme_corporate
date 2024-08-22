@@ -1,6 +1,4 @@
 import { HomeContainer } from "./Home.styled";
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
 import HeroSection from "./components/HeroSection/HeroSection";
 import AboutUsSection from "./components/AboutUsSection/AboutUsSection";
 import ServicesSection from "./components/ServicesSection/ServicesSection";
@@ -13,21 +11,17 @@ import CareersSection from "./components/CareersSection/CareersSection";
 
 function Home() {
   return (
-    <>
-      <Header />
-      <HomeContainer>
-        <HeroSection />
-        <AboutUsSection />
-        <ServicesSection />
-        <ProductsSection />
-        <NewsSection />
-        <OfficesSection />
-        <CareersSection />
-        <CSRSection />
-        <ContactUsSection />
-      </HomeContainer>
-      <Footer />
-    </>
+    <HomeContainer>
+      <HeroSection />
+      <AboutUsSection />
+      <ServicesSection />
+      <ProductsSection />
+      <NewsSection />
+      <OfficesSection />
+      <CareersSection />
+      <CSRSection />
+      <ContactUsSection />
+    </HomeContainer>
   );
 }
 

@@ -1,6 +1,6 @@
 import { styled } from "solid-styled-components";
 
-export const ServicesContainer = styled("div")`
+export const ServicesContainer = styled("main")`
   display: flex;
   flex-direction: column;
   align-items: center;

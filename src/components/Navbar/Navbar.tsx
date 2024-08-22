@@ -6,32 +6,24 @@ function Navbar() {
 
   return (
     <NavbarContainer>
-      <NavLink href="/" isActive={location.pathname === "/"}>
-        Home
-      </NavLink>
       <NavLink href="/about-us" isActive={location.pathname === "/about-us"}>
-        About Us
+        会社情報
       </NavLink>
       <NavLink href="/services" isActive={location.pathname === "/services"}>
-        Services
+        事業紹介
       </NavLink>
       <NavLink href="/products" isActive={location.pathname === "/products"}>
-        Products
+        商品紹介
       </NavLink>
       <NavLink href="/news" isActive={location.pathname === "/news"}>
-        News
+        お知らせ
       </NavLink>
-      <NavLink
-        href="/contact-us"
-        isActive={location.pathname === "/contact-us"}
-      >
-        Contact Us
-      </NavLink>
+
       <NavLink href="/careers" isActive={location.pathname === "/careers"}>
-        Careers
+        採用情報
       </NavLink>
       <NavLink href="/blog" isActive={location.pathname === "/blog"}>
-        Blog
+        橋爪倶楽部
       </NavLink>
     </NavbarContainer>
   );

@@ -7,8 +7,6 @@ import {
   FormTextarea,
   FormButton,
 } from "./ContactUs.styled";
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
 
 function ContactUs() {
   const handleSubmit = (event: Event) => {
@@ -18,33 +16,29 @@ function ContactUs() {
   };
 
   return (
-    <>
-      <Header />
-      <ContactUsContainer>
-        <h2>Contact Us</h2>
-        <ContactForm onSubmit={handleSubmit}>
-          <FormField>
-            <FormLabel for="name">Name:</FormLabel>
-            <FormInput type="text" id="name" name="name" required />
-          </FormField>
-          <FormField>
-            <FormLabel for="email">Email:</FormLabel>
-            <FormInput type="email" id="email" name="email" required />
-          </FormField>
-          <FormField>
-            <FormLabel for="message">Message:</FormLabel>
-            <FormTextarea
-              id="message"
-              name="message"
-              rows="5"
-              required
-            ></FormTextarea>
-          </FormField>
-          <FormButton type="submit">Submit</FormButton>
-        </ContactForm>
-      </ContactUsContainer>
-      <Footer />
-    </>
+    <ContactUsContainer>
+      <h2>Contact Us</h2>
+      <ContactForm onSubmit={handleSubmit}>
+        <FormField>
+          <FormLabel for="name">Name:</FormLabel>
+          <FormInput type="text" id="name" name="name" required />
+        </FormField>
+        <FormField>
+          <FormLabel for="email">Email:</FormLabel>
+          <FormInput type="email" id="email" name="email" required />
+        </FormField>
+        <FormField>
+          <FormLabel for="message">Message:</FormLabel>
+          <FormTextarea
+            id="message"
+            name="message"
+            rows="5"
+            required
+          ></FormTextarea>
+        </FormField>
+        <FormButton type="submit">Submit</FormButton>
+      </ContactForm>
+    </ContactUsContainer>
   );
 }
 

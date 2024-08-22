@@ -7,7 +7,8 @@ export const FilterContainer = styled("div")`
 `;
 
 export const FilterButton = styled("button")<{ selected: boolean }>`
-  background-color: ${({ selected }) => (selected ? "#007bff" : "#fff")};
+  background-color: ${({ selected }) =>
+    selected ? "var(--primary-color)" : "#fff"};
   color: ${({ selected }) => (selected ? "#fff" : "#000")};
   border: 1px solid #ddd;
   border-radius: 4px;

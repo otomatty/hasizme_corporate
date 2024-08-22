@@ -1,5 +1,6 @@
 import { Router, Route } from "@solidjs/router";
-import { Suspense } from "solid-js";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home";
 import CSRDetail from "./pages/CSRDetail/CSRDetail";
 import AboutUs from "./pages/AboutUs/AboutUs";
@@ -13,24 +14,30 @@ import Offices from "./pages/Offices/Offices";
 import CSR from "./pages/CSR/CSR";
 import "./App.css";
 
-function App() {
+const App = (props: { children?: any }) => (
+  <>
+    <Header />
+    <main>{props.children}</main>
+    <Footer />
+  </>
+);
+
+function AppWrapper() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <Router>
-        <Route path="/" component={Home} />
-        <Route path="/csr/:id" component={CSRDetail} />
-        <Route path="/about-us" component={AboutUs} />
-        <Route path="/services" component={Services} />
-        <Route path="/products" component={Products} />
-        <Route path="/news" component={News} />
-        <Route path="/contact-us" component={ContactUs} />
-        <Route path="/careers" component={Careers} />
-        <Route path="/blog" component={Blog} />
-        <Route path="/offices" component={Offices} />
-        <Route path="/csr" component={CSR} />
-      </Router>
-    </Suspense>
+    <Router root={App}>
+      <Route path="/" component={Home} />
+      <Route path="/csr/:id" component={CSRDetail} />
+      <Route path="/about-us" component={AboutUs} />
+      <Route path="/services" component={Services} />
+      <Route path="/products" component={Products} />
+      <Route path="/news" component={News} />
+      <Route path="/contact-us" component={ContactUs} />
+      <Route path="/careers" component={Careers} />
+      <Route path="/blog" component={Blog} />
+      <Route path="/offices" component={Offices} />
+      <Route path="/csr" component={CSR} />
+    </Router>
   );
 }
 
-export default App;
+export default AppWrapper;

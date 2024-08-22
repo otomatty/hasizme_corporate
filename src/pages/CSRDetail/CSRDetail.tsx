@@ -9,8 +9,6 @@ import {
   CSRDetailDescription,
   CSRDetailInfo,
 } from "./CSRDetail.styled";
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
 
 const CSRDetail = () => {
   const params = useParams();
@@ -22,34 +20,30 @@ const CSRDetail = () => {
   });
 
   return (
-    <>
-      <Header />
-      <CSRDetailContainer>
-        <Show when={csrActivity()}>
-          {(activity) => (
-            <>
-              <CSRDetailImage src={activity().image} alt={activity().title} />
-              <CSRDetailTitle>{activity().title}</CSRDetailTitle>
-              <CSRDetailDescription>
-                {activity().fullDescription}
-              </CSRDetailDescription>
-              <CSRDetailInfo>
-                <p>
-                  <strong>実施日:</strong> {activity().date}
-                </p>
-                <p>
-                  <strong>参加者:</strong> {activity().participants}
-                </p>
-                <p>
-                  <strong>影響:</strong> {activity().impact}
-                </p>
-              </CSRDetailInfo>
-            </>
-          )}
-        </Show>
-      </CSRDetailContainer>
-      <Footer />
-    </>
+    <CSRDetailContainer>
+      <Show when={csrActivity()}>
+        {(activity) => (
+          <>
+            <CSRDetailImage src={activity().image} alt={activity().title} />
+            <CSRDetailTitle>{activity().title}</CSRDetailTitle>
+            <CSRDetailDescription>
+              {activity().fullDescription}
+            </CSRDetailDescription>
+            <CSRDetailInfo>
+              <p>
+                <strong>実施日:</strong> {activity().date}
+              </p>
+              <p>
+                <strong>参加者:</strong> {activity().participants}
+              </p>
+              <p>
+                <strong>影響:</strong> {activity().impact}
+              </p>
+            </CSRDetailInfo>
+          </>
+        )}
+      </Show>
+    </CSRDetailContainer>
   );
 };
 

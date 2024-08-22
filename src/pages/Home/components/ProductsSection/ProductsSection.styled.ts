@@ -21,19 +21,21 @@ export const ProductsGrid = styled("div")`
   gap: 1rem;
 `;
 
-export const MoreButton = styled("button")`
-  display: block;
-  margin: 2rem auto 0;
-  padding: 0.5rem 1rem;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+export const SearchSortContainer = styled("div")`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
 
-  &:hover {
-    background-color: #0056b3;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
   }
+`;
+
+export const ButtonContainer = styled("div")`
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
 `;

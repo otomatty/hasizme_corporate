@@ -9,30 +9,24 @@ import {
   CSRCardImage,
   CSRCardTitle,
 } from "./CSR.styled";
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
 
 function CSR() {
   return (
-    <>
-      <Header />
-      <CSRContainer>
-        <CSRTitle>CSR活動</CSRTitle>
-        <CSRGrid>
-          <For each={csrActivities}>
-            {(activity) => (
-              <A href={`/csr/${activity.id}`}>
-                <CSRCard>
-                  <CSRCardImage src={activity.thumbnail} alt={activity.title} />
-                  <CSRCardTitle>{activity.title}</CSRCardTitle>
-                </CSRCard>
-              </A>
-            )}
-          </For>
-        </CSRGrid>
-      </CSRContainer>
-      <Footer />
-    </>
+    <CSRContainer>
+      <CSRTitle>CSR活動</CSRTitle>
+      <CSRGrid>
+        <For each={csrActivities}>
+          {(activity) => (
+            <A href={`/csr/${activity.id}`}>
+              <CSRCard>
+                <CSRCardImage src={activity.thumbnail} alt={activity.title} />
+                <CSRCardTitle>{activity.title}</CSRCardTitle>
+              </CSRCard>
+            </A>
+          )}
+        </For>
+      </CSRGrid>
+    </CSRContainer>
   );
 }
 

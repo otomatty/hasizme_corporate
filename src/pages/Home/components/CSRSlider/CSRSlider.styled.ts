@@ -10,19 +10,23 @@ export const SliderTrack = styled("div")`
   display: flex;
   gap: 2rem;
   width: fit-content;
-  animation: scroll 100s linear infinite;
+  animation: scroll 40s linear infinite;
 
   @keyframes scroll {
     0% {
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-100% / 10));
+      transform: translateX(calc(-100% / 40));
     }
   }
 
   &:hover {
     animation-play-state: paused;
+  }
+
+  a {
+    text-decoration: none;
   }
 `;
 
@@ -63,7 +67,7 @@ export const SlideTitle = styled("h3")`
   font-size: 1.2rem;
   margin: 1rem;
   text-align: center;
-  color: var(--primary-color);
+  color: var(--font-color);
   flex-grow: 1;
   display: flex;
   align-items: center;

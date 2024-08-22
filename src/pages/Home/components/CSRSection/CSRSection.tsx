@@ -2,21 +2,30 @@ import {
   CSRContainer,
   CSRTitle,
   CSRContent,
-  CSRLinkButton,
+  ButtonContainer,
 } from "./CSRSection.styled";
 import CSRSlider from "../CSRSlider/CSRSlider";
 import { csrActivities } from "../../../../data/csrData";
-import { A } from "@solidjs/router";
+import Button from "../../../../components/Button/Button";
+import { useNavigate } from "@solidjs/router";
 
 function CSRSection() {
+  const navigate = useNavigate();
+
+  const handleViewAllClick = () => {
+    navigate("/csr");
+  };
+
   return (
     <CSRContainer>
       <CSRTitle>CSR活動</CSRTitle>
       <CSRContent>
         <CSRSlider activities={csrActivities} />
-        <CSRLinkButton>
-          <A href="/csr">CSR活動一覧を見る</A>
-        </CSRLinkButton>
+        <ButtonContainer>
+          <Button onClick={handleViewAllClick} color="primary">
+            CSR活動一覧を見る
+          </Button>
+        </ButtonContainer>
       </CSRContent>
     </CSRContainer>
   );

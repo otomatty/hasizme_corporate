@@ -1,4 +1,5 @@
 import { styled } from "solid-styled-components";
+import { A } from "@solidjs/router";
 
 export const CareersSectionContainer = styled("section")`
   padding: 4rem 0;
@@ -52,16 +53,16 @@ export const CareerCardDescription = styled("p")`
   margin-bottom: 1rem;
 `;
 
-export const CareerCardLink = styled("a")`
+export const CareerCardLink = styled(A)`
   display: inline-block;
-  padding: 0.5rem 1rem;
-  background-color: var(--primary-color);
-  color: white;
+  margin-top: 1rem;
+  color: var(--primary-color);
   text-decoration: none;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
+  font-weight: bold;
+  transition: color 0.3s ease;
 
   &:hover {
-    background-color: var(--accent-color);
+    color: var(--accent-color);
+    text-decoration: underline;
   }
 `;

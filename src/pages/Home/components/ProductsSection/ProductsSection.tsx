@@ -3,7 +3,8 @@ import products from "../../../../data/productsData";
 import {
   ProductsContainer,
   ProductsTitle,
-  MoreButton,
+  SearchSortContainer,
+  ButtonContainer,
 } from "./ProductsSection.styled";
 import ProductGrid from "../ProductGrid/ProductGrid";
 import ProductFilter from "../ProductFilter/ProductFilter";
@@ -11,6 +12,7 @@ import ProductSearch from "../ProductSearch/ProductSearch";
 import ProductModal from "../ProductModal/ProductModal";
 import ProductSort, { SortOption } from "../ProductSort/ProductSort";
 import Container from "../../../../components/Container/Container";
+import Button from "../../../../components/Button/Button";
 import { Product } from "../../../../types/product";
 import { useNavigate } from "@solidjs/router";
 
@@ -93,15 +95,21 @@ function ProductsSection() {
     <Container>
       <ProductsContainer>
         <ProductsTitle>取扱商品</ProductsTitle>
-        <ProductSearch onSearch={handleSearch} />
+        <SearchSortContainer>
+          <ProductSearch onSearch={handleSearch} />
+          <ProductSort value={sortOption()} onChange={handleSort} />
+        </SearchSortContainer>
         <ProductFilter onFilterChange={handleFilterChange} />
-        <ProductSort value={sortOption()} onChange={handleSort} />
         <ProductGrid
           products={filteredProducts()}
           onProductClick={handleProductClick}
           maxItems={maxItems}
         />
-        <MoreButton onClick={handleViewAllClick}>もっと見る</MoreButton>
+        <ButtonContainer>
+          <Button onClick={handleViewAllClick} color="primary">
+            もっと見る
+          </Button>
+        </ButtonContainer>
         <ProductModal
           isOpen={isModalOpen()}
           onClose={handleCloseModal}

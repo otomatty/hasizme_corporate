@@ -8,7 +8,6 @@ export const CSRContainer = styled("section")`
 
 export const CSRTitle = styled("h2")`
   font-size: 2.5rem;
-  color: var(--primary-color);
   text-align: center;
   margin-bottom: 2rem;
 `;
@@ -19,21 +18,8 @@ export const CSRContent = styled("div")`
   align-items: center;
 `;
 
-export const CSRLinkButton = styled("div")`
+export const ButtonContainer = styled("div")`
   margin-top: 2rem;
-
-  a {
-    display: inline-block;
-    padding: 0.8rem 1.5rem;
-    background-color: var(--primary-color);
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-
-    &:hover {
-      background-color: var(--primary-color-dark);
-    }
-  }
+  display: flex;
+  justify-content: center;
 `;
