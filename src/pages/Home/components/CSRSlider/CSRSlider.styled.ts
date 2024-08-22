@@ -9,14 +9,15 @@ export const SliderContainer = styled("div")`
 export const SliderTrack = styled("div")`
   display: flex;
   gap: 2rem;
-  animation: scroll 80s linear infinite;
+  width: fit-content;
+  animation: scroll 100s linear infinite;
 
   @keyframes scroll {
     0% {
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-100% - 2rem));
+      transform: translateX(calc(-100% / 10));
     }
   }
 

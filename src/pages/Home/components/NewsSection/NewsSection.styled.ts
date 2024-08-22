@@ -31,7 +31,6 @@ export const NewsVisual = styled.div`
 
 export const NewsList = styled.div`
   flex: 2;
-  overflow-y: auto;
   height: 100%;
 `;
 
