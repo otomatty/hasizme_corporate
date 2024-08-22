@@ -1,6 +1,7 @@
-import { createSignal, onMount } from "solid-js";
+import { createSignal, onMount, onCleanup } from "solid-js";
 import { services } from "../../../../data/servicesData";
 import Container from "../../../../components/Container/Container";
+import { useScrollLogic } from "../../../../utils/scrollLogic";
 import {
   ServicesContainer,
   ServicesWrapper,
@@ -24,6 +25,8 @@ function ServicesSection() {
   const [selectedService, setSelectedService] =
     createSignal<ServiceType | null>(null);
   const [currentIndex, setCurrentIndex] = createSignal(-1);
+  const [isAtTop, setIsAtTop] = createSignal(false);
+  const { isScrollingDown, controlScroll } = useScrollLogic();
 
   const handleCardClick = (service: ServiceType, index: number) => {
     setSelectedService(service);
@@ -36,14 +39,18 @@ function ServicesSection() {
   };
 
   const handleScroll = () => {
+    controlScroll();
     const scrollPosition = window.scrollY;
     const sectionTop =
       document.getElementById("services-section")?.offsetTop || 0;
-    const sectionHeight = window.innerHeight;
+
+    setIsAtTop(scrollPosition >= sectionTop);
 
     if (scrollPosition >= sectionTop) {
       document.documentElement.style.scrollBehavior = "smooth";
-      const index = Math.round((scrollPosition - sectionTop) / sectionHeight);
+      const index = Math.round(
+        (scrollPosition - sectionTop) / window.innerHeight
+      );
       setCurrentIndex(index);
       setSelectedService(services[index]);
     } else {
@@ -55,15 +62,25 @@ function ServicesSection() {
 
   onMount(() => {
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+  });
+
+  onCleanup(() => {
+    window.removeEventListener("scroll", handleScroll);
   });
 
   return (
     <ServicesContainer id="services-section">
       <Container>
-        <ServicesWrapper id="services-wrapper">
+        <ServicesWrapper
+          id="services-wrapper"
+          style={{
+            "padding-top": isAtTop()
+              ? isScrollingDown()
+                ? "2rem"
+                : "8rem"
+              : "2rem",
+          }}
+        >
           <ServicesList>
             {services.map((service, index) => (
               <ServiceCard

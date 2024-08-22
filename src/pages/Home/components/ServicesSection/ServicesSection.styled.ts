@@ -14,11 +14,11 @@ export const ServicesWrapper = styled("div")`
   position: sticky;
   top: 0; /* 固定位置を調整 */
   height: 100vh; /* 高さを100vhに設定 */
-  margin-top: 8rem;
   box-sizing: border-box;
   padding: 2rem 0;
   box-sizing: border-box;
   overflow-y: hidden; /* 内部スクロールを隠す */
+  transition: padding-top 0.3s ease; /* アニメーションを追加 */
 `;
 
 export const ServicesList = styled("div")`
