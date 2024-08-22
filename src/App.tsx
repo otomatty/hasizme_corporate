@@ -1,6 +1,7 @@
 import { Router, Route } from "@solidjs/router";
 import { Suspense } from "solid-js";
 import Home from "./pages/Home/Home";
+import CSRDetail from "./pages/CSRDetail/CSRDetail";
 import AboutUs from "./pages/AboutUs/AboutUs";
 import Services from "./pages/Services/Services";
 import Products from "./pages/Products/Products";
@@ -17,6 +18,7 @@ function App() {
     <Suspense fallback={<div>Loading...</div>}>
       <Router>
         <Route path="/" component={Home} />
+        <Route path="/csr/:id" component={CSRDetail} />
         <Route path="/about-us" component={AboutUs} />
         <Route path="/services" component={Services} />
         <Route path="/products" component={Products} />

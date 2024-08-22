@@ -7,9 +7,9 @@ import ServicesSection from "./components/ServicesSection/ServicesSection";
 import ProductsSection from "./components/ProductsSection/ProductsSection";
 import NewsSection from "./components/NewsSection/NewsSection";
 import ContactUsSection from "./components/ContactUsSection/ContactUsSection";
-import TestimonialsSection from "./components/TestimonialsSection/TestimonialsSection";
 import OfficesSection from "./components/OfficesSection/OfficesSection";
 import CSRSection from "./components/CSRSection/CSRSection";
+import CareersSection from "./components/CareersSection/CareersSection";
 
 function Home() {
   return (
@@ -21,10 +21,10 @@ function Home() {
         <ServicesSection />
         <ProductsSection />
         <NewsSection />
-        <ContactUsSection />
-        <TestimonialsSection />
         <OfficesSection />
+        <CareersSection />
         <CSRSection />
+        <ContactUsSection />
       </HomeContainer>
       <Footer />
     </>

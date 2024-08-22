@@ -1,12 +1,19 @@
 import { Component, For } from "solid-js";
-import { SliderContainer, SliderTrack, Slide } from "./CSRSlider.styled";
+import { A } from "@solidjs/router";
+import {
+  SliderContainer,
+  SliderTrack,
+  Slide,
+  SlideImage,
+  SlideTitle,
+} from "./CSRSlider.styled";
+import { CSRActivity } from "../../../../types/csr";
 
 interface CSRSliderProps {
-  activities: { title: string; description: string }[];
+  activities: CSRActivity[];
 }
 
 const CSRSlider: Component<CSRSliderProps> = (props) => {
-  // activitiesを2回繰り返して表示するようにする
   const repeatedActivities = [...props.activities, ...props.activities];
 
   return (
@@ -14,10 +21,12 @@ const CSRSlider: Component<CSRSliderProps> = (props) => {
       <SliderTrack>
         <For each={repeatedActivities}>
           {(activity) => (
-            <Slide>
-              <h3>{activity.title}</h3>
-              <p>{activity.description}</p>
-            </Slide>
+            <A href={`/csr/${activity.id}`}>
+              <Slide>
+                <SlideImage src={activity.thumbnail} alt={activity.title} />
+                <SlideTitle>{activity.title}</SlideTitle>
+              </Slide>
+            </A>
           )}
         </For>
       </SliderTrack>

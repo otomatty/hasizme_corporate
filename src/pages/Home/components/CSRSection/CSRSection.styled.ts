@@ -1,28 +1,38 @@
 import { styled } from "solid-styled-components";
 
 export const CSRContainer = styled("section")`
-  text-align: center;
-  margin: 2rem 0;
-  width: 100%;
-  overflow: hidden;
+  padding: 4rem 2rem;
+  background-color: #f5f5f5;
 `;
 
 export const CSRTitle = styled("h2")`
-  font-size: 2rem;
-  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  text-align: center;
+  margin-bottom: 2rem;
 `;
 
-export const CSRCard = styled("div")`
-  background-color: var(--base-color);
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  text-align: left;
-  transition: transform 0.3s ease;
+export const CSRContent = styled("div")`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+export const CSRLinkButton = styled("div")`
+  margin-top: 2rem;
+
+  a {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: var(--primary-color-dark);
+    }
   }
 `;

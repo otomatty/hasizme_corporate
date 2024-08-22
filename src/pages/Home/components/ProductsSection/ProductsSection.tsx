@@ -92,7 +92,7 @@ function ProductsSection() {
   return (
     <Container>
       <ProductsContainer>
-        <ProductsTitle>Our Products</ProductsTitle>
+        <ProductsTitle>取扱商品</ProductsTitle>
         <ProductSearch onSearch={handleSearch} />
         <ProductFilter onFilterChange={handleFilterChange} />
         <ProductSort value={sortOption()} onChange={handleSort} />
