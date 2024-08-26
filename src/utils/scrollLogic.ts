@@ -12,7 +12,7 @@ export function useScrollLogic() {
 
     if (direction === "down") {
       setScrollDistance((prev) => prev + distance);
-      if (scrollDistance() > 200 && currentScrollY > 200) {
+      if (scrollDistance() > 50 && currentScrollY > 50) {
         setIsScrollingDown(true);
       }
     } else {

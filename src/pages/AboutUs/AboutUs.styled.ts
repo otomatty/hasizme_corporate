@@ -10,6 +10,8 @@ export const AboutUsContainer = styled("div")`
 export const Section = styled("section")`
   margin: 2rem 0;
   text-align: center;
+  width: 100%;
+  max-width: 800px;
 `;
 
 export const Title = styled("h2")`
@@ -20,6 +22,24 @@ export const Title = styled("h2")`
 export const Content = styled("p")`
   font-size: 1.25rem;
   color: #555;
-  max-width: 800px;
   margin: 0 auto;
+`;
+
+export const LinkList = styled("ul")`
+  list-style-type: none;
+  padding: 0;
+  margin-top: 1rem;
+`;
+
+export const LinkItem = styled("li")`
+  margin-bottom: 0.5rem;
+
+  a {
+    color: #0066cc;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 `;

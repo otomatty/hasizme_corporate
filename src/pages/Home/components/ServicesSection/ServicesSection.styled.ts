@@ -68,6 +68,7 @@ export const ServiceIcon = styled("div")`
 export const ServiceTitle = styled("h3")`
   font-size: 1.25rem;
   color: #444;
+  margin: 0;
 `;
 
 export const SliderContainer = styled("div")`

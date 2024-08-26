@@ -2,43 +2,87 @@ import { styled } from "solid-styled-components";
 
 export const NavbarContainer = styled("nav")`
   display: flex;
-  gap: 1rem;
+  justify-content: center;
+`;
 
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: center;
+export const NavItem = styled("div")`
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  &:not(:last-child)::after {
+    content: "";
+
+    height: 60%;
+    width: 1px;
+    background-color: #e0e0e0;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
   }
 `;
 
-export const NavLink = styled("a")<{ isActive: boolean }>`
-  color: ${({ isActive }) =>
-    isActive ? "var(--primary-color)" : "var(--font-color)"};
-  text-decoration: none;
-  position: relative;
-  padding-bottom: 2px;
+export const NavButton = styled("button")<{ isActive: boolean }>`
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 1rem 1.5rem;
+  color: ${(props) => (props.isActive ? "var(--primary-color)" : "inherit")};
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 
   &:hover {
     color: var(--primary-color);
+    transform: translateY(-2px);
   }
 
-  &::before {
+  &::after {
     content: "";
     position: absolute;
+    bottom: -2px;
+    left: 0;
     width: 100%;
     height: 2px;
-    bottom: -4px;
-    left: 0;
     background-color: var(--primary-color);
-    transform: scaleX(0);
-    transform-origin: center;
-    transition: transform 0.3s ease-out;
+    transform: scaleX(${(props) => (props.isActive ? 1 : 0)});
+    transition: transform 0.3s ease;
   }
 
-  &:hover::before {
+  &:hover::after {
     transform: scaleX(1);
   }
+`;
 
-  @media (max-width: 768px) {
+export const MegaMenu = styled("div")<{ isActive: boolean }>`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 200px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  opacity: ${(props) => (props.isActive ? 1 : 0)};
+  visibility: ${(props) => (props.isActive ? "visible" : "hidden")};
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 1000;
+`;
+
+export const MegaMenuContent = styled("div")`
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+
+  a {
+    color: #333;
+    text-decoration: none;
     padding: 0.5rem 0;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--primary-color);
+    }
   }
 `;

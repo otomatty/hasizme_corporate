@@ -55,19 +55,12 @@ export const MissionContent = styled("div")<MissionContentProps>`
   overflow: hidden;
   transition: max-height 0.3s ease;
   font-size: 1rem;
-  color: #666;
   margin-top: 0.5rem;
 `;
 
-export const MissionSubtitle = styled("h4")`
-  font-size: 1.5rem;
-  margin-top: 1rem;
+export const MissionCatchphrase = styled("h2")`
+  font-size: 3rem;
   color: #333;
-`;
-
-export const MissionCatchphrase = styled("p")`
-  font-size: 1.75rem;
-  color: #555;
   margin-top: 0.5rem;
 
   @media (max-width: 768px) {

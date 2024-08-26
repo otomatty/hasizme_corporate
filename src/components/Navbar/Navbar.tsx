@@ -1,30 +1,56 @@
-import { NavbarContainer, NavLink } from "./Navbar.styled";
-import { useLocation } from "@solidjs/router";
+import { For } from "solid-js";
+import { useNavigate } from "@solidjs/router";
+import { NavbarContainer, NavItem, NavButton } from "./Navbar.styled";
+import { MenuItem } from "../../data/menuItemsData";
+import { FaSolidChevronDown } from "solid-icons/fa";
 
-function Navbar() {
-  const location = useLocation();
+interface NavbarProps {
+  menuItems: MenuItem[];
+  activeMenu: () => string | null;
+  setActiveMenu: (menu: string | null) => void;
+}
+
+function Navbar(props: NavbarProps) {
+  const navigate = useNavigate();
+
+  const handleClick = (item: MenuItem) => {
+    if (item.subItems.length > 0) {
+      props.setActiveMenu(
+        props.activeMenu() === item.title ? null : item.title
+      );
+    } else {
+      navigate(item.link);
+      props.setActiveMenu(null);
+    }
+  };
 
   return (
     <NavbarContainer>
-      <NavLink href="/about-us" isActive={location.pathname === "/about-us"}>
-        会社情報
-      </NavLink>
-      <NavLink href="/services" isActive={location.pathname === "/services"}>
-        事業紹介
-      </NavLink>
-      <NavLink href="/products" isActive={location.pathname === "/products"}>
-        商品紹介
-      </NavLink>
-      <NavLink href="/news" isActive={location.pathname === "/news"}>
-        お知らせ
-      </NavLink>
-
-      <NavLink href="/careers" isActive={location.pathname === "/careers"}>
-        採用情報
-      </NavLink>
-      <NavLink href="/blog" isActive={location.pathname === "/blog"}>
-        橋爪倶楽部
-      </NavLink>
+      <For each={props.menuItems}>
+        {(item) => (
+          <NavItem>
+            <NavButton
+              onClick={() => handleClick(item)}
+              isActive={props.activeMenu() === item.title}
+            >
+              <item.icon />
+              {item.title}
+              {item.subItems.length > 0 && (
+                <FaSolidChevronDown
+                  size={16}
+                  style={{
+                    transition: "transform 0.3s ease",
+                    transform:
+                      props.activeMenu() === item.title
+                        ? "rotate(180deg)"
+                        : "rotate(0)",
+                  }}
+                />
+              )}
+            </NavButton>
+          </NavItem>
+        )}
+      </For>
     </NavbarContainer>
   );
 }

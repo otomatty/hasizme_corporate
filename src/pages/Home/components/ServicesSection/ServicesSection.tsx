@@ -77,7 +77,7 @@ function ServicesSection() {
             "padding-top": isAtTop()
               ? isScrollingDown()
                 ? "2rem"
-                : "8rem"
+                : "10rem"
               : "2rem",
           }}
         >
