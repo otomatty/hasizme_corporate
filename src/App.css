@@ -1,4 +1,4 @@
-@import "normalize.css";
+@import 'normalize.css';
 
 /* テーマカラーの定義 */
 :root {
@@ -10,7 +10,7 @@
 
 /* グローバルスタイル */
 body {
-  font-family: "Noto Sans JP", sans-serif;
+  font-family: 'Noto Sans JP', sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;

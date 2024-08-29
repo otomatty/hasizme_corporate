@@ -1,24 +1,11 @@
 import { styled } from 'solid-styled-components';
 
-export const ServicesContainer = styled('div')`
-  display: flex;
-  background-color: #f9f9f9;
-  width: 100%;
-  position: relative;
-  height: 700vh; /* 高さを1200vhに設定 */
-`;
-
-export const ServicesWrapper = styled('div')`
+export const ServiceCarouselContainer = styled('div')`
   display: flex;
   width: 100%;
-  position: sticky;
-  top: 0; /* 固定位置を調整 */
-  height: 100vh; /* 高さを100vhに設定 */
+  height: 100vh;
   box-sizing: border-box;
-  padding: 2rem 0;
-  box-sizing: border-box;
-  overflow-y: hidden; /* 内部スクロールを隠す */
-  transition: padding-top 0.3s ease; /* アニメーションを追加 */
+  overflow-y: hidden;
 `;
 
 export const ServicesList = styled('div')`
@@ -28,13 +15,6 @@ export const ServicesList = styled('div')`
   width: 300px;
   padding: 1rem;
   gap: 1rem;
-`;
-
-export const ServicesTitle = styled('h2')`
-  font-size: 2rem;
-  text-align: center;
-  margin-bottom: 2rem;
-  color: #333;
 `;
 
 export const ServiceCard = styled('div')<{ selected: boolean }>`
@@ -70,6 +50,19 @@ export const ServiceTitle = styled('h3')`
   margin: 0;
 `;
 
+export const ServiceDescriptionContainer = styled('div')`
+  margin-left: 1rem;
+  flex: 1;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  width: calc(100% - 300px - 2rem);
+  display: flex;
+`;
+
 export const SliderContainer = styled('div')`
   position: relative;
   width: 100%;
@@ -82,38 +75,13 @@ export const Slide = styled('div')`
   width: 100%;
   height: 100%;
   transition: transform 0.5s ease-in-out;
-  transform: translateY(100%); /* 初期状態は下に隠す */
+  transform: translateY(100%);
   &.active {
-    transform: translateY(0); /* アクティブなスライドは表示 */
+    transform: translateY(0);
   }
   &.inactive {
-    transform: translateY(-100%); /* 非アクティブなスライドは上に隠す */
+    transform: translateY(-100%);
   }
-`;
-
-export const ServiceDescriptionContainer = styled('div')`
-  margin-left: 1rem;
-  flex: 1;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 1.5rem;
-  position: relative;
-  overflow: hidden;
-  width: calc(100% - 300px - 2rem);
-  display: flex; /* インジケーターを横に配置するために追加 */
-`;
-
-export const ServiceDescriptionTitle = styled('h3')`
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: #444;
-`;
-
-export const ServiceDescriptionText = styled('p')`
-  font-size: 1rem;
-  color: #666;
-  line-height: 1.6;
 `;
 
 export const DescriptionWrapper = styled('div')`
@@ -132,12 +100,24 @@ export const DescriptionWrapper = styled('div')`
   background-color: #f0f0f0;
 `;
 
+export const ServiceDescriptionTitle = styled('h3')`
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #444;
+`;
+
+export const ServiceDescriptionText = styled('p')`
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+`;
+
 export const IndicatorContainer = styled('div')`
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 0.5rem;
-  margin-left: 1rem; /* ServiceDescriptionContainerの横に配置 */
+  margin-left: 1rem;
 `;
 
 export const IndicatorDot = styled('div')<{ active: boolean }>`
