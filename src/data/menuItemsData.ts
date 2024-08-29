@@ -82,6 +82,7 @@ export const menuItems: MenuItem[] = [
     link: '/careers',
     icon: FaSolidUserTie,
     subItems: [
+      { title: '採用トップ', link: '/careers' },
       { title: '新卒採用', link: '/careers/new-graduates' },
       { title: '中途採用', link: '/careers/mid-career' },
       { title: 'インターンシップ', link: '/careers/internship' },

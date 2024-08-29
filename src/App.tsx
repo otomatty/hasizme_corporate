@@ -9,6 +9,7 @@ import Home from './pages/Home/Home';
 import AboutUs from './pages/AboutUs/AboutUs';
 import CompanyProfile from './pages/CompanyProfile/CompanyProfile';
 import OrganizationChart from './pages/OrganizationChart/OrganizationChart';
+import History from './pages/History/History';
 // 事業紹介
 import Services from './pages/Services/Services';
 import ServiceDetail from './pages/ServiceDetail/ServiceDetail';
@@ -56,6 +57,7 @@ function AppWrapper() {
         <Route path="/" component={AboutUs} />
         <Route path="/company-profile" component={CompanyProfile} />
         <Route path="/organization" component={OrganizationChart} />
+        <Route path="/history" component={History} />
       </Route>
       <Route path="/services">
         <Route path="/" component={Services} />

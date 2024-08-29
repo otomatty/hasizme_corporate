@@ -1,41 +1,62 @@
-import { BlogContainer, BlogPost, BlogTitle, BlogContent } from "./Blog.styled";
+import { createResource, For } from 'solid-js';
+import { A } from '@solidjs/router';
+import { fetchBlogPosts } from '../../newt/newtClient';
+import type { BlogPost } from '../../types/blog';
+import Hero from '../../components/Hero/Hero';
+import Container from '../../components/Container/Container';
+import {
+  BlogList,
+  BlogItem,
+  BlogImage,
+  BlogTitle,
+  BlogMeta,
+  BlogTags,
+  Tag,
+} from './Blog.styled';
 
-function Blog() {
+// デフォルト画像のパスを指定
+const DEFAULT_IMAGE_PATH = '/logo.svg';
+
+export default function Blog() {
+  const [posts] = createResource<BlogPost[]>(fetchBlogPosts);
+
   return (
-    <BlogContainer>
-      <h2>Blog</h2>
-      <BlogPost>
-        <BlogTitle>
-          Understanding the Importance of Quality Construction Materials
-        </BlogTitle>
-        <BlogContent>
-          Quality construction materials are essential for ensuring the
-          durability and longevity of any building project. In this post, we
-          explore the key factors to consider when selecting materials for your
-          next project.
-        </BlogContent>
-      </BlogPost>
-      <BlogPost>
-        <BlogTitle>Top Trends in the Construction Industry for 2023</BlogTitle>
-        <BlogContent>
-          The construction industry is constantly evolving. In this post, we
-          highlight the top trends that are shaping the industry in 2023, from
-          sustainable building practices to the latest technological
-          advancements.
-        </BlogContent>
-      </BlogPost>
-      <BlogPost>
-        <BlogTitle>
-          How to Choose the Right Construction Materials for Your Project
-        </BlogTitle>
-        <BlogContent>
-          Choosing the right construction materials can be a daunting task. In
-          this post, we provide a comprehensive guide to help you make informed
-          decisions and select the best materials for your specific needs.
-        </BlogContent>
-      </BlogPost>
-    </BlogContainer>
+    <>
+      <Hero title="橋爪俱楽部" />
+      <Container>
+        <BlogList>
+          <For each={posts()} fallback={<p>読み込み中...</p>}>
+            {(post) => (
+              <BlogItem>
+                <A href={`/blog/${post.slug}`}>
+                  <BlogImage
+                    src={post.coverImage?.src || DEFAULT_IMAGE_PATH}
+                    alt={post.coverImage?.altText || post.title}
+                    isDefault={!post.coverImage}
+                  />
+                  <BlogTitle>{post.title}</BlogTitle>
+                </A>
+                <BlogMeta>
+                  {new Date(post._sys.updatedAt).toLocaleDateString('ja-JP')}
+                </BlogMeta>
+                {post.tags && (
+                  <BlogTags>
+                    {post.tags.map((tag) => (
+                      <Tag
+                        style={{
+                          'background-color': tag.tagColor || '#f0f0f0',
+                        }}
+                      >
+                        {tag.name}
+                      </Tag>
+                    ))}
+                  </BlogTags>
+                )}
+              </BlogItem>
+            )}
+          </For>
+        </BlogList>
+      </Container>
+    </>
   );
 }
-
-export default Blog;
