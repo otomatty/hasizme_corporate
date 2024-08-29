@@ -14,3 +14,16 @@ export const fetchBlogPosts = async (): Promise<BlogPost[]> => {
   });
   return items as BlogPost[];
 };
+
+export const fetchBlogPostBySlug = async (
+  slug: string
+): Promise<BlogPost | null> => {
+  const { items } = await client.getContents({
+    appUid: import.meta.env.VITE_APP_UID,
+    modelUid: import.meta.env.VITE_MODEL_UID,
+    query: {
+      slug: slug,
+    },
+  });
+  return items.length > 0 ? (items[0] as BlogPost) : null;
+};

@@ -21,6 +21,7 @@ import News from './pages/News/News';
 import Careers from './pages/Careers/Careers';
 // 橋爪倶楽部（オウンドメディア）
 import Blog from './pages/Blog/Blog';
+import BlogPost from './pages/BlogPost/BlogPost';
 // 事業所情報
 import Offices from './pages/Offices/Offices';
 // CSR活動
@@ -67,7 +68,10 @@ function AppWrapper() {
       <Route path="/news" component={News} />
       <Route path="/contact-us" component={ContactUs} />
       <Route path="/careers" component={Careers} />
-      <Route path="/blog" component={Blog} />
+      <Route path="/blog">
+        <Route path="/" component={Blog} />
+        <Route path="/:slug" component={BlogPost} />
+      </Route>
       <Route path="/offices" component={Offices} />
       <Route path="/csr">
         <Route path="/" component={CSR} />
