@@ -4,7 +4,6 @@ import { services, ServiceData } from '../../data/servicesData';
 import {
   ServiceDetailContainer,
   HeroContainer,
-  HeroImage,
   HeroFilter,
   HeroTitle,
   ServiceContent,
