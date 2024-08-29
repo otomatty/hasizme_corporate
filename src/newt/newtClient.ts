@@ -27,3 +27,16 @@ export const fetchBlogPostBySlug = async (
   });
   return items.length > 0 ? (items[0] as BlogPost) : null;
 };
+
+export const fetchBlogPostsByTag = async (
+  tagSlug: string
+): Promise<BlogPost[]> => {
+  const { items } = await client.getContents({
+    appUid: import.meta.env.VITE_APP_UID,
+    modelUid: import.meta.env.VITE_MODEL_UID,
+    query: {
+      'tags.slug': tagSlug,
+    },
+  });
+  return items as BlogPost[];
+};
