@@ -53,18 +53,7 @@ export const menuItems: MenuItem[] = [
       { title: 'DX', link: '/services/dx' },
     ],
   },
-  {
-    title: '商品紹介',
-    link: '/products',
-    icon: FaSolidBox,
-    subItems: [],
-  },
-  {
-    title: 'お知らせ',
-    link: '/news',
-    icon: FaSolidNewspaper,
-    subItems: [],
-  },
+
   {
     title: '橋爪倶楽部',
     link: '/blog',

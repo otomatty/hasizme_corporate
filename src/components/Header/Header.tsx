@@ -1,5 +1,5 @@
-import { onCleanup, onMount, createSignal } from "solid-js";
-import { useScrollLogic } from "../../utils/scrollLogic";
+import { onCleanup, onMount, createSignal, Show } from 'solid-js';
+import { useScrollLogic } from '../../utils/scrollLogic';
 import {
   HeaderContainer,
   HeaderTopRow,
@@ -7,13 +7,14 @@ import {
   LogoWrapper,
   CompanyName,
   HeaderExpanded,
-} from "./Header.styled";
-import Navbar from "../Navbar/Navbar";
-import MegaMenu from "../MegaMenu/MegaMenu";
-import ContactButtons from "../ContactButtons/ContactButtons";
-import Container from "../Container/Container";
-import { A } from "@solidjs/router";
-import { menuItems } from "../../data/menuItemsData";
+  HamburgerButton,
+} from './Header.styled';
+import Navbar from '../Navbar/Navbar';
+import MegaMenu from '../MegaMenu/MegaMenu';
+import ContactButtons from '../ContactButtons/ContactButtons';
+import Container from '../Container/Container';
+import { A } from '@solidjs/router';
+import { menuItems } from '../../data/menuItemsData';
 
 interface HeaderProps {
   setHeaderHeight: (height: number) => void;
@@ -30,15 +31,18 @@ const Header = (props: HeaderProps) => {
 
   const { isScrollingDown, controlScroll } = useScrollLogic();
   const [activeMenu, setActiveMenu] = createSignal<string | null>(null);
+  const [isMenuOpen, setIsMenuOpen] = createSignal(false);
 
   const closeMegaMenu = () => setActiveMenu(null);
 
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen());
+
   onMount(() => {
-    window.addEventListener("scroll", controlScroll);
+    window.addEventListener('scroll', controlScroll);
   });
 
   onCleanup(() => {
-    window.removeEventListener("scroll", controlScroll);
+    window.removeEventListener('scroll', controlScroll);
   });
 
   return (
@@ -56,13 +60,22 @@ const Header = (props: HeaderProps) => {
             </A>
           </LogoWrapper>
           <ContactButtons />
+          <Show when={window.innerWidth <= 1400}>
+            <HamburgerButton onClick={toggleMenu}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </HamburgerButton>
+          </Show>
         </HeaderTopRow>
         <HeaderBottomRow>
-          <Navbar
-            menuItems={menuItems}
-            activeMenu={activeMenu}
-            setActiveMenu={setActiveMenu}
-          />
+          <Show when={window.innerWidth > 1400 || isMenuOpen()} fallback={null}>
+            <Navbar
+              menuItems={menuItems}
+              activeMenu={activeMenu}
+              setActiveMenu={setActiveMenu}
+            />
+          </Show>
         </HeaderBottomRow>
       </Container>
       <HeaderExpanded isActive={activeMenu() !== null}>

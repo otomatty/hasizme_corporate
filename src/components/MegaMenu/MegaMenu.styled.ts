@@ -1,18 +1,17 @@
-import { styled } from "solid-styled-components";
+import { styled } from 'solid-styled-components';
 
-export const MegaMenuContainer = styled("div")<{ isActive: boolean }>`
-  display: ${(props) => (props.isActive ? "block" : "none")};
-  background-color: #f5f5f5;
+export const MegaMenuContainer = styled('div')<{ isActive: boolean }>`
+  display: ${(props) => (props.isActive ? 'block' : 'none')};
   padding: 1rem 0;
 `;
 
-export const MegaMenuContent = styled("div")<{ isActive: boolean }>`
-  display: ${(props) => (props.isActive ? "flex" : "none")};
+export const MegaMenuContent = styled('div')<{ isActive: boolean }>`
+  display: ${(props) => (props.isActive ? 'flex' : 'none')};
   flex-wrap: wrap;
   gap: 1rem;
 `;
 
-export const MegaMenuItem = styled("button")`
+export const MegaMenuItem = styled('button')`
   background: none;
   border: none;
   cursor: pointer;
