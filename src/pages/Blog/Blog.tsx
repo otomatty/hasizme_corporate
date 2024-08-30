@@ -18,7 +18,7 @@ import {
 const DEFAULT_IMAGE_PATH = '/logo.svg';
 
 export default function Blog() {
-  const [posts] = createResource<BlogPost[]>(fetchBlogPosts);
+  const [posts] = createResource<BlogPost[]>(() => fetchBlogPosts());
 
   return (
     <>

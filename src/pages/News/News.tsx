@@ -1,38 +1,53 @@
+import { createResource, For, Show } from 'solid-js';
+import { A } from '@solidjs/router';
+import { fetchNewsItems } from '../../newt/newtClient';
+import { NewsItem } from '../../types/news';
+import Hero from '../../components/Hero/Hero';
 import {
   NewsContainer,
-  NewsSection,
-  NewsTitle,
-  NewsContent,
-} from "./News.styled";
+  NewsList,
+  NewsListItem,
+  NewsItemTitle,
+  NewsDate,
+  NewsExcerpt,
+  LoadingMessage,
+} from './News.styled';
 
 function News() {
+  const [news] = createResource<NewsItem[]>(() => fetchNewsItems());
+
   return (
-    <NewsContainer>
-      <NewsSection>
-        <NewsTitle>Latest News</NewsTitle>
-        <NewsContent>
-          Stay updated with the latest news and announcements from our company.
-          We are committed to keeping you informed about our latest projects and
-          developments.
-        </NewsContent>
-      </NewsSection>
-      <NewsSection>
-        <NewsTitle>Press Releases</NewsTitle>
-        <NewsContent>
-          Read our latest press releases to learn more about our company's
-          achievements and milestones. We are proud to share our success stories
-          with you.
-        </NewsContent>
-      </NewsSection>
-      <NewsSection>
-        <NewsTitle>Industry News</NewsTitle>
-        <NewsContent>
-          Keep up with the latest trends and updates in the construction
-          materials industry. We provide insights and analysis to help you stay
-          ahead of the curve.
-        </NewsContent>
-      </NewsSection>
-    </NewsContainer>
+    <>
+      <Hero title="お知らせ一覧" />
+      <NewsContainer>
+        <Show
+          when={!news.loading}
+          fallback={
+            <LoadingMessage>ニュースを読み込んでいます...</LoadingMessage>
+          }
+        >
+          <NewsList>
+            <For each={news()}>
+              {(item) => (
+                <NewsListItem>
+                  <A href={`/news/${item.slug}`}>
+                    <NewsDate>
+                      {new Date(
+                        item._sys?.createdAt ?? Date.now()
+                      ).toLocaleDateString('ja-JP')}
+                    </NewsDate>
+                    <NewsItemTitle>{item.newsTitle}</NewsItemTitle>
+                    <NewsExcerpt>
+                      {item.content?.slice(0, 100) ?? ''}...
+                    </NewsExcerpt>
+                  </A>
+                </NewsListItem>
+              )}
+            </For>
+          </NewsList>
+        </Show>
+      </NewsContainer>
+    </>
   );
 }
 

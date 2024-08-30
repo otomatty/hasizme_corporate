@@ -1,4 +1,4 @@
-export interface NewsItem {
+export interface FAQItem {
   _id: string;
   _sys: {
     createdAt: string;
@@ -11,7 +11,7 @@ export interface NewsItem {
       publishedAt: string;
     };
   };
-  newsTitle: string;
-  slug: string;
-  content: string;
+  question: string;
+  answer: string;
+  category: string;
 }

@@ -17,6 +17,7 @@ import ServiceDetail from './pages/ServiceDetail/ServiceDetail';
 import Products from './pages/Products/Products';
 // お知らせ
 import News from './pages/News/News';
+import NewsDetail from './pages/NewsDetail/NewsDetail';
 // 採用情報
 import Careers from './pages/Careers/Careers';
 // 橋爪倶楽部（オウンドメディア）
@@ -28,8 +29,12 @@ import Offices from './pages/Offices/Offices';
 // CSR活動
 import CSR from './pages/CSR/CSR';
 import CSRDetail from './pages/CSRDetail/CSRDetail';
+// よくある質問
+import FAQ from './pages/FAQ/FAQ';
 // お問い合わせ
-import ContactUs from './pages/ContactUs/ContactUs';
+import Contact from './pages/Contact/Contact';
+// 資料請求
+import RequestMaterials from './pages/RequestMaterials/RequestMaterials';
 
 import './App.css';
 
@@ -66,8 +71,10 @@ function AppWrapper() {
         <Route path="/:id" component={ServiceDetail} />
       </Route>
       <Route path="/products" component={Products} />
-      <Route path="/news" component={News} />
-      <Route path="/contact-us" component={ContactUs} />
+      <Route path="/news">
+        <Route path="/" component={News} />
+        <Route path="/:slug" component={NewsDetail} />
+      </Route>
       <Route path="/careers" component={Careers} />
       <Route path="/blog">
         <Route path="/" component={Blog} />
@@ -79,6 +86,11 @@ function AppWrapper() {
         <Route path="/" component={CSR} />
         <Route path="/:id" component={CSRDetail} />
       </Route>
+      <Route path="/faq" component={FAQ} />
+      <Route path="/contact">
+        <Route path="/" component={Contact} />
+      </Route>
+      <Route path="/request-materials" component={RequestMaterials} />
     </Router>
   );
 }
