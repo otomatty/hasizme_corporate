@@ -1,8 +1,16 @@
 import { Router, Route } from '@solidjs/router';
-import { createSignal } from 'solid-js';
+import { createSignal, onMount, onCleanup } from 'solid-js';
 // 共通コンポーネント
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+import {
+  SlideInMenuContainer,
+  SlideInMenuOverlay,
+  CloseButton,
+} from './components/Header/Header.styled';
+import Navbar from './components/Navbar/Navbar';
+import { menuItems } from './data/menuItemsData';
+import { MobileContactButtons } from './components/ContactButtons/ContactButtons';
 // ページコンポーネント
 import Home from './pages/Home/Home';
 // 会社情報
@@ -10,6 +18,7 @@ import AboutUs from './pages/AboutUs/AboutUs';
 import CompanyProfile from './pages/CompanyProfile/CompanyProfile';
 import OrganizationChart from './pages/OrganizationChart/OrganizationChart';
 import History from './pages/History/History';
+import PostDisasterJourney from './pages/PostDisasterJourney/PostDisasterJourney';
 // 事業紹介
 import Services from './pages/Services/Services';
 import ServiceDetail from './pages/ServiceDetail/ServiceDetail';
@@ -40,14 +49,51 @@ import './App.css';
 
 const App = (props: { children?: any }) => {
   const [mainMarginTop, setMainMarginTop] = createSignal(0);
+  const [isMenuOpen, setIsMenuOpen] = createSignal(false);
+  const [isMobile, setIsMobile] = createSignal(window.innerWidth <= 1200);
+  const [activeMenu, setActiveMenu] = createSignal<string | null>(null);
 
   const setHeaderHeight = (height: number) => {
     setMainMarginTop(height);
   };
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen());
+  };
+
+  const handleResize = () => {
+    setIsMobile(window.innerWidth <= 1200);
+    if (window.innerWidth > 1200) {
+      setIsMenuOpen(false);
+    }
+  };
+
+  onMount(() => {
+    window.addEventListener('resize', handleResize);
+  });
+
+  onCleanup(() => {
+    window.removeEventListener('resize', handleResize);
+  });
+
   return (
     <>
-      <Header setHeaderHeight={setHeaderHeight} />
+      <Header setHeaderHeight={setHeaderHeight} toggleMenu={toggleMenu} />
+      <SlideInMenuOverlay
+        isOpen={isMenuOpen()}
+        onClick={() => setIsMenuOpen(false)}
+      />
+      <SlideInMenuContainer isOpen={isMenuOpen()}>
+        <CloseButton onClick={() => setIsMenuOpen(false)}>&times;</CloseButton>
+        <Navbar
+          menuItems={menuItems}
+          activeMenu={activeMenu}
+          setActiveMenu={setActiveMenu}
+          isMobile={isMobile}
+          closeMenu={() => setIsMenuOpen(false)}
+        />
+        <MobileContactButtons />
+      </SlideInMenuContainer>
       <main style={{ 'margin-top': `${mainMarginTop()}px` }}>
         {props.children}
       </main>
@@ -65,6 +111,7 @@ function AppWrapper() {
         <Route path="/company-profile" component={CompanyProfile} />
         <Route path="/organization" component={OrganizationChart} />
         <Route path="/history" component={History} />
+        <Route path="/post-disaster-journey" component={PostDisasterJourney} />
       </Route>
       <Route path="/services">
         <Route path="/" component={Services} />

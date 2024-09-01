@@ -1,23 +1,23 @@
-import { ModalContainer, ModalContent, CloseButton } from "./Modal.styled";
-import { JSX } from "solid-js";
+import { JSX, Show } from 'solid-js';
+import { Portal } from 'solid-js/web';
+import { ModalOverlay, ModalContent } from './Modal.styled';
 
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  children: JSX.Element | JSX.Element[];
+  children: JSX.Element;
 }
 
-function Modal({ isOpen, onClose, children }: ModalProps) {
-  if (!isOpen) return null;
-
+export function Modal(props: ModalProps) {
   return (
-    <ModalContainer>
-      <ModalContent>
-        <CloseButton onClick={onClose}>×</CloseButton>
-        {children}
-      </ModalContent>
-    </ModalContainer>
+    <Show when={props.isOpen}>
+      <Portal>
+        <ModalOverlay onClick={props.onClose}>
+          <ModalContent onClick={(e) => e.stopPropagation()}>
+            {props.children}
+          </ModalContent>
+        </ModalOverlay>
+      </Portal>
+    </Show>
   );
 }
-
-export default Modal;

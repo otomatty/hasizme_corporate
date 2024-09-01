@@ -1,16 +1,16 @@
-import { For } from "solid-js";
+import { For } from 'solid-js';
 import {
   MegaMenuContainer,
   MegaMenuContent,
   MegaMenuItem,
-} from "./MegaMenu.styled";
-import { MenuItem } from "../../data/menuItemsData";
-import { useNavigate } from "@solidjs/router";
+} from './MegaMenu.styled';
+import { MenuItem } from '../../data/menuItemsData';
+import { useNavigate } from '@solidjs/router';
 
 interface MegaMenuProps {
   activeMenu: string | null;
   menuItems: MenuItem[];
-  onClose: () => void;
+  closeMegaMenu: () => void; // 追加
 }
 
 function MegaMenu(props: MegaMenuProps) {
@@ -18,7 +18,7 @@ function MegaMenu(props: MegaMenuProps) {
 
   const handleItemClick = (link: string) => {
     navigate(link);
-    props.onClose();
+    props.closeMegaMenu(); // 追加
   };
 
   return (

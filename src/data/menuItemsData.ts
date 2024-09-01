@@ -2,8 +2,6 @@ import { Component } from 'solid-js';
 import {
   FaSolidBuilding,
   FaSolidBriefcase,
-  FaSolidBox,
-  FaSolidNewspaper,
   FaSolidUsers,
   FaSolidHandshake,
   FaSolidUserTie,

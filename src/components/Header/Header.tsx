@@ -8,16 +8,19 @@ import {
   CompanyName,
   HeaderExpanded,
   HamburgerButton,
+  NavLinksOpen,
+  HeaderRight,
 } from './Header.styled';
 import Navbar from '../Navbar/Navbar';
 import MegaMenu from '../MegaMenu/MegaMenu';
-import ContactButtons from '../ContactButtons/ContactButtons';
 import Container from '../Container/Container';
 import { A } from '@solidjs/router';
 import { menuItems } from '../../data/menuItemsData';
+import { ContactButtons } from '../ContactButtons/ContactButtons';
 
 interface HeaderProps {
   setHeaderHeight: (height: number) => void;
+  toggleMenu: () => void;
 }
 
 const Header = (props: HeaderProps) => {
@@ -31,18 +34,22 @@ const Header = (props: HeaderProps) => {
 
   const { isScrollingDown, controlScroll } = useScrollLogic();
   const [activeMenu, setActiveMenu] = createSignal<string | null>(null);
-  const [isMenuOpen, setIsMenuOpen] = createSignal(false);
+  const [isMobile, setIsMobile] = createSignal(window.innerWidth <= 1200);
 
   const closeMegaMenu = () => setActiveMenu(null);
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen());
+  const handleResize = () => {
+    setIsMobile(window.innerWidth <= 1200);
+  };
 
   onMount(() => {
     window.addEventListener('scroll', controlScroll);
+    window.addEventListener('resize', handleResize);
   });
 
   onCleanup(() => {
     window.removeEventListener('scroll', controlScroll);
+    window.removeEventListener('resize', handleResize);
   });
 
   return (
@@ -59,34 +66,40 @@ const Header = (props: HeaderProps) => {
               <CompanyName>橋爪商事株式会社</CompanyName>
             </A>
           </LogoWrapper>
-          <ContactButtons />
-          <Show when={window.innerWidth <= 1400}>
-            <HamburgerButton onClick={toggleMenu}>
-              <span></span>
-              <span></span>
-              <span></span>
-            </HamburgerButton>
-          </Show>
+          <HeaderRight>
+            <Show when={!isMobile()}>
+              <ContactButtons />
+            </Show>
+            <Show when={isMobile()}>
+              <ContactButtons />
+              <HamburgerButton onClick={props.toggleMenu}>
+                <span></span>
+                <span></span>
+                <span></span>
+              </HamburgerButton>
+            </Show>
+          </HeaderRight>
         </HeaderTopRow>
+      </Container>
+      <Show when={!isMobile()}>
         <HeaderBottomRow>
-          <Show when={window.innerWidth > 1400 || isMenuOpen()} fallback={null}>
+          <NavLinksOpen isOpen={false}>
             <Navbar
               menuItems={menuItems}
               activeMenu={activeMenu}
               setActiveMenu={setActiveMenu}
+              isMobile={isMobile}
             />
-          </Show>
+          </NavLinksOpen>
         </HeaderBottomRow>
-      </Container>
-      <HeaderExpanded isActive={activeMenu() !== null}>
-        <Container>
+        <HeaderExpanded isActive={activeMenu() !== null}>
           <MegaMenu
             activeMenu={activeMenu()}
             menuItems={menuItems}
-            onClose={closeMegaMenu}
+            closeMegaMenu={closeMegaMenu}
           />
-        </Container>
-      </HeaderExpanded>
+        </HeaderExpanded>
+      </Show>
     </HeaderContainer>
   );
 };

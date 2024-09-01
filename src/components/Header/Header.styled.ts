@@ -21,15 +21,6 @@ export const HeaderTopRow = styled('div')`
   justify-content: space-between;
   align-items: center;
   padding: 1rem 0;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: center;
-  }
-`;
-
-export const HeaderBottomRow = styled('div')`
-  border-top: 1px solid #e0e0e0;
 `;
 
 export const LogoWrapper = styled('div')`
@@ -41,25 +32,11 @@ export const LogoWrapper = styled('div')`
     align-items: center;
     text-decoration: none;
     color: inherit;
-    transition: transform 0.2s ease-in-out;
-
-    &:hover {
-      transform: scale(1.05);
-    }
   }
 
   img {
     height: 40px;
     margin-right: 1rem;
-    transition: filter 0.2s ease-in-out;
-  }
-
-  &:hover img {
-    filter: brightness(1.2);
-  }
-
-  @media (max-width: 768px) {
-    margin-bottom: 1rem;
   }
 `;
 
@@ -67,11 +44,21 @@ export const CompanyName = styled('h1')`
   font-size: 1.5rem;
   font-weight: bold;
   color: var(--primary-color);
-  transition: color 0.2s ease-in-out;
 
   @media (max-width: 768px) {
     font-size: 1.2rem;
   }
+`;
+
+export const HeaderRight = styled('div')`
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 1rem;
+`;
+
+export const HeaderBottomRow = styled('div')`
+  border-top: 1px solid #e0e0e0;
 `;
 
 export const HeaderExpanded = styled('div')<{ isActive: boolean }>`
@@ -90,8 +77,17 @@ export const HamburgerButton = styled.button`
   cursor: pointer;
   padding: 10px;
 
-  @media (max-width: 1400px) {
+  @media (max-width: 1200px) {
     display: block;
+  }
+
+  span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--primary-color);
+    margin: 5px 0;
+    transition: all 0.3s ease;
   }
 `;
 
@@ -99,15 +95,19 @@ export const NavLinks = styled.div`
   display: flex;
   align-items: center;
 
-  @media (max-width: 1400px) {
+  @media (max-width: 1200px) {
     display: none;
   }
 `;
 
 // ハンバーガーメニューが開いたときのスタイル
-export const NavLinksOpen = styled(NavLinks)`
-  @media (max-width: 1400px) {
-    display: flex;
+interface NavLinksOpenProps {
+  isOpen: boolean;
+}
+
+export const NavLinksOpen = styled('nav')<NavLinksOpenProps>`
+  @media (max-width: 1200px) {
+    display: ${(props) => (props.isOpen ? 'flex' : 'none')};
     flex-direction: column;
     position: absolute;
     top: 100%;
@@ -116,4 +116,73 @@ export const NavLinksOpen = styled(NavLinks)`
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
+`;
+
+export const NavItem = styled('li')`
+  list-style: none;
+`;
+
+export const NavButton = styled('button')<{ isActive: boolean }>`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  color: ${(props) => (props.isActive ? '#0080ff' : 'white')};
+  font-weight: ${(props) => (props.isActive ? 'bold' : 'normal')};
+
+  &:hover {
+    color: #0080ff;
+  }
+`;
+
+export const MobileNavContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+
+export const SlideInMenuContainer = styled('div')<{ isOpen: boolean }>`
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%; /* 画面全体に広がるように修正 */
+  background-color: #fff;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  transform: ${(props) =>
+    props.isOpen ? 'translateX(0)' : 'translateX(100%)'};
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  box-sizing: border-box;
+`;
+
+export const SlideInMenuOverlay = styled('div')<{ isOpen: boolean }>`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: ${(props) => (props.isOpen ? 1 : 0)};
+  visibility: ${(props) => (props.isOpen ? 'visible' : 'hidden')};
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 999;
+`;
+
+export const CloseButton = styled.button`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 1rem;
+  z-index: 1001;
 `;

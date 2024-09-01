@@ -1,17 +1,21 @@
-import { styled } from "solid-styled-components";
+import { styled } from 'solid-styled-components';
 
-export const NavbarContainer = styled("nav")`
+export const NavbarContainer = styled('nav')`
   display: flex;
   justify-content: center;
+  @media (max-width: 1200px) {
+    flex-direction: column;
+    width: 100%;
+  }
 `;
 
-export const NavItem = styled("div")`
+export const NavItem = styled('div')`
   position: relative;
   display: flex;
   align-items: center;
 
   &:not(:last-child)::after {
-    content: "";
+    content: '';
 
     height: 60%;
     width: 1px;
@@ -23,13 +27,13 @@ export const NavItem = styled("div")`
   }
 `;
 
-export const NavButton = styled("button")<{ isActive: boolean }>`
+export const NavButton = styled('button')<{ isActive: boolean }>`
   background: none;
   border: none;
   cursor: pointer;
   font-size: 1rem;
   padding: 1rem 1.5rem;
-  color: ${(props) => (props.isActive ? "var(--primary-color)" : "inherit")};
+  color: ${(props) => (props.isActive ? 'var(--primary-color)' : 'inherit')};
   transition: color 0.3s ease, transform 0.3s ease;
   display: flex;
   align-items: center;
@@ -41,7 +45,7 @@ export const NavButton = styled("button")<{ isActive: boolean }>`
   }
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     bottom: -2px;
     left: 0;
@@ -57,7 +61,7 @@ export const NavButton = styled("button")<{ isActive: boolean }>`
   }
 `;
 
-export const MegaMenu = styled("div")<{ isActive: boolean }>`
+export const MegaMenu = styled('div')<{ isActive: boolean }>`
   position: absolute;
   top: 100%;
   left: 0;
@@ -65,12 +69,12 @@ export const MegaMenu = styled("div")<{ isActive: boolean }>`
   background-color: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   opacity: ${(props) => (props.isActive ? 1 : 0)};
-  visibility: ${(props) => (props.isActive ? "visible" : "hidden")};
+  visibility: ${(props) => (props.isActive ? 'visible' : 'hidden')};
   transition: opacity 0.3s ease, visibility 0.3s ease;
   z-index: 1000;
 `;
 
-export const MegaMenuContent = styled("div")`
+export const MegaMenuContent = styled('div')`
   display: flex;
   flex-direction: column;
   padding: 1rem;
@@ -84,5 +88,57 @@ export const MegaMenuContent = styled("div")`
     &:hover {
       color: var(--primary-color);
     }
+  }
+`;
+
+export const MobileNavItem = styled.li`
+  list-style: none;
+  width: 100%;
+`;
+
+export const MobileNavButton = styled.button<{ isActive: boolean }>`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: ${(props) => (props.isActive ? '#0080ff' : 'inherit')};
+  font-weight: ${(props) => (props.isActive ? 'bold' : 'normal')};
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+
+  svg {
+    margin-right: 10px;
+  }
+`;
+
+export const SubMenuContainer = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  padding-left: 1rem;
+`;
+
+export const SubMenuItem = styled.li`
+  list-style: none;
+  margin: 0.5rem 0;
+`;
+
+export const SubMenuButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  color: inherit;
+  text-align: left;
+  width: 100%;
+
+  &:hover {
+    background-color: #f0f0f0;
   }
 `;
