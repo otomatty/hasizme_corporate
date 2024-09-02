@@ -18,7 +18,7 @@ function NewsSection() {
 
   return (
     <NewsContainer>
-      <NewsTitle>最新ニュース</NewsTitle>
+      <NewsTitle>お知らせ</NewsTitle>
       <NewsContent>
         <Show
           when={!news.loading}

@@ -1,4 +1,4 @@
-import { styled } from "solid-styled-components";
+import { styled } from 'solid-styled-components';
 
 export const NewsContainer = styled.section`
   padding: 2rem 0;
@@ -15,7 +15,6 @@ export const NewsTitle = styled.h2`
 export const NewsContent = styled.div`
   display: flex;
   gap: 2rem;
-  height: 800px;
 `;
 
 export const NewsVisual = styled.div`
