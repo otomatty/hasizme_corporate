@@ -24,8 +24,8 @@ export const fetchBlogPostBySlug = async (
   slug: string
 ): Promise<BlogPost | null> => {
   const { items } = await client.getContents({
-    appUid: import.meta.env.VITE_APP_UID,
-    modelUid: import.meta.env.VITE_MODEL_UID,
+    appUid: import.meta.env.VITE_BLOG_APP_UID,
+    modelUid: import.meta.env.VITE_BLOG_MODEL_UID,
     query: {
       slug: slug,
     },
@@ -37,8 +37,8 @@ export const fetchBlogPostsByTag = async (
   tagSlug: string
 ): Promise<BlogPost[]> => {
   const { items } = await client.getContents({
-    appUid: import.meta.env.VITE_APP_UID,
-    modelUid: import.meta.env.VITE_MODEL_UID,
+    appUid: import.meta.env.VITE_BLOG_APP_UID,
+    modelUid: import.meta.env.VITE_BLOG_MODEL_UID,
     query: {
       'tags.slug': tagSlug,
     },
