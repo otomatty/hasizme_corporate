@@ -6,6 +6,7 @@ export const NavbarContainer = styled('nav')`
   @media (max-width: 1200px) {
     flex-direction: column;
     width: 100%;
+    margin-top: 4rem;
   }
 `;
 

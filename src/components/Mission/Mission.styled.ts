@@ -4,9 +4,30 @@ export const MissionContainer = styled('div')`
   margin: 4rem 0;
 `;
 
-export const MainTitle = styled('h2')`
-  font-size: 1.6rem;
+export const MissionCatchphrase = styled('h2')`
+  font-size: 2rem;
+
+  color: #333;
+  margin-top: 0.5rem;
+
+  @media (min-width: 768px) {
+    font-size: 2.5rem;
+  }
+  @media (min-width: 1200px) {
+    font-size: 4rem;
+  }
+`;
+
+export const MainTitle = styled('h3')`
+  font-size: 1rem;
+  margin-bottom: 1rem;
   text-align: center;
+  color: #333;
+
+  @media (min-width: 768px) {
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 export const MissionItemWrapper = styled('div')`
@@ -41,7 +62,7 @@ export const MissionCircle = styled('div')`
   }
 `;
 
-export const MissionTitle = styled('h3')`
+export const MissionTitle = styled('h4')`
   font-size: 1rem;
   text-align: center;
   margin: 0;
@@ -129,4 +150,51 @@ export const CloseButton = styled('button')`
   &:hover {
     transform: scale(1.1);
   }
+`;
+
+export const MobileItemWrapper = styled('div')`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
+
+export const MobileItem = styled('div')`
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+`;
+
+export const MobileTitle = styled('h3')`
+  margin: 0;
+  font-size: 1.2rem;
+`;
+
+export const ModalOverlay = styled('div')`
+  text-align: left;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 767px) {
+    display: flex;
+  }
+`;
+
+export const ModalContent = styled('div')`
+  background-color: #fff;
+  padding: 3rem 1rem 1rem 1rem;
+  height: 96vh;
+  margin: 1rem;
+  box-sizing: border-box;
+  border-radius: 8px;
+  overflow-y: auto;
 `;

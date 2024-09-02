@@ -5,7 +5,10 @@ export const ServicesContainer = styled('div')`
   background-color: #f9f9f9;
   width: 100%;
   position: relative;
-  height: 700vh; /* 高さを1200vhに設定 */
+
+  @media (min-width: 1024px) {
+    height: 700vh; /* 高さを1200vhに設定 */
+  }
 `;
 
 export const ServicesWrapper = styled('div')`
@@ -22,12 +25,20 @@ export const ServicesWrapper = styled('div')`
 `;
 
 export const ServicesList = styled('div')`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 300px;
-  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 300px;
+    height: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
 `;
 
 export const ServicesTitle = styled('h2')`
@@ -40,22 +51,31 @@ export const ServicesTitle = styled('h2')`
 export const ServiceCard = styled('div')<{ selected: boolean }>`
   background-color: #fff;
   border-radius: 8px;
-  height: calc(100% / 7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+
   box-shadow: ${({ selected }) =>
     selected
       ? '0 8px 16px rgba(0, 0, 0, 0.2)'
       : '0 4px 8px rgba(0, 0, 0, 0.1)'};
   padding: 1rem;
-  display: flex;
-  align-items: center;
+  transform: none; /* 768px以上の画面サイズではtransformを適用しない */
   transition: transform 0.3s, box-shadow 0.3s, padding 0.3s;
   cursor: pointer;
-  transform: ${({ selected }) => (selected ? 'scale(1.1)' : 'scale(1)')};
 
-  &:hover {
-    transform: scale(1.1);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    padding: 1.5rem;
+  @media (min-width: 768px) {
+    height: calc(100% / 7);
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+    transform: ${({ selected }) => (selected ? 'scale(1.1)' : 'scale(1)')};
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2);
+      padding: 1.5rem;
+    }
   }
 `;
 
@@ -133,11 +153,15 @@ export const DescriptionWrapper = styled('div')`
 `;
 
 export const IndicatorContainer = styled('div')`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-left: 1rem; /* ServiceDescriptionContainerの横に配置 */
+  display: none; /* 1024px未満の画面サイズで非表示 */
+
+  @media (min-width: 1024px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-left: 1rem; /* ServiceDescriptionContainerの横に配置 */
+  }
 `;
 
 export const IndicatorDot = styled('div')<{ active: boolean }>`
@@ -146,4 +170,30 @@ export const IndicatorDot = styled('div')<{ active: boolean }>`
   background-color: ${({ active }) => (active ? '#444' : '#e0e0e0')};
   border-radius: 50%;
   transition: background-color 0.3s;
+`;
+
+export const ModalOverlay = styled('div')<{ isOpen: boolean }>`
+  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+`;
+
+export const ModalContent = styled('div')`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 1rem;
+  box-sizing: border-box;
+  border-radius: 8px;
+  width: 90%;
+  height: 90%;
+  overflow-y: auto;
+  z-index: 1001;
 `;

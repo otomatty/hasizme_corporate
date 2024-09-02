@@ -1,16 +1,16 @@
 import { styled } from 'solid-styled-components';
 
 export const ContactButtonsContainer = styled.div`
-  display: flex;
-  gap: 1rem;
+  display: none; /* 768px以下で非表示 */
 
-  @media (max-width: 1200px) {
+  @media (min-width: 768px) {
     display: flex;
-    order: 1; /* ハンバーガーボタンと並べるために順序を指定 */
+    gap: 1rem;
+    margin-right: 6rem;
   }
-
-  @media (max-width: 768px) {
-    display: none; /* 768px以下で非表示 */
+  @media (min-width: 1200px) {
+    order: 1; /* ハンバーガーボタンと並べるために順序を指定 */
+    margin: 0;
   }
 `;
 

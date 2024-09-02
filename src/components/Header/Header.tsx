@@ -7,7 +7,6 @@ import {
   LogoWrapper,
   CompanyName,
   HeaderExpanded,
-  HamburgerButton,
   NavLinksOpen,
   HeaderRight,
 } from './Header.styled';
@@ -17,6 +16,7 @@ import Container from '../Container/Container';
 import { A } from '@solidjs/router';
 import { menuItems } from '../../data/menuItemsData';
 import { ContactButtons } from '../ContactButtons/ContactButtons';
+import HamburgerButton from '../HamburgerButton/HamburgerButton';
 
 interface HeaderProps {
   setHeaderHeight: (height: number) => void;
@@ -72,11 +72,7 @@ const Header = (props: HeaderProps) => {
             </Show>
             <Show when={isMobile()}>
               <ContactButtons />
-              <HamburgerButton onClick={props.toggleMenu}>
-                <span></span>
-                <span></span>
-                <span></span>
-              </HamburgerButton>
+              <HamburgerButton onClick={props.toggleMenu} />
             </Show>
           </HeaderRight>
         </HeaderTopRow>

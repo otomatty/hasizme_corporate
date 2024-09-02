@@ -1,9 +1,10 @@
 import { styled } from 'solid-styled-components';
 
 export const NewsContainer = styled.section`
-  padding: 2rem 0;
+  padding: 0 1rem 2rem 1rem;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0 auto 4rem auto;
+  box-sizing: border-box;
 `;
 
 export const NewsTitle = styled.h2`
@@ -93,7 +94,6 @@ export const NewsDate = styled.p`
 
 export const MoreNewsButton = styled.a`
   display: block;
-  width: 100%;
   padding: 1rem;
   text-align: center;
   background-color: #f0f0f0;

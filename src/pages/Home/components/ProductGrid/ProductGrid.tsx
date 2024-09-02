@@ -5,10 +5,10 @@ import {
   onCleanup,
   createSignal,
   createEffect,
-} from "solid-js";
-import ProductCard from "../ProductCard/ProductCard";
-import { GridContainer } from "./ProductGrid.styled";
-import { Product } from "../../../../types/product";
+} from 'solid-js';
+import ProductCard from '../ProductCard/ProductCard';
+import { GridContainer } from './ProductGrid.styled';
+import { Product } from '../../../../types/product';
 
 type ProductGridProps = {
   products: Product[];
@@ -20,7 +20,9 @@ const ProductGrid: Component<ProductGridProps> = (props) => {
   const [itemsPerRow, setItemsPerRow] = createSignal(5);
 
   const updateItemsPerRow = () => {
-    if (window.innerWidth < 768) {
+    if (window.innerWidth < 425) {
+      setItemsPerRow(2);
+    } else if (window.innerWidth < 768) {
       setItemsPerRow(3);
     } else if (window.innerWidth < 1024) {
       setItemsPerRow(4);
@@ -34,11 +36,11 @@ const ProductGrid: Component<ProductGridProps> = (props) => {
   });
 
   onMount(() => {
-    window.addEventListener("resize", updateItemsPerRow);
+    window.addEventListener('resize', updateItemsPerRow);
   });
 
   onCleanup(() => {
-    window.removeEventListener("resize", updateItemsPerRow);
+    window.removeEventListener('resize', updateItemsPerRow);
   });
 
   const displayedProducts = () => {

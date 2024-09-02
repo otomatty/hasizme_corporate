@@ -11,6 +11,7 @@
   "dependencies": {
     "@mbarzda/solid-i18next": "^1.4.1",
     "@solid-primitives/i18n": "^2.1.1",
+    "@solid-primitives/media": "^2.2.9",
     "@solidjs/router": "^0.14.3",
     "@splidejs/splide": "^4.1.4",
     "@splidejs/splide-extension-auto-scroll": "^0.5.3",

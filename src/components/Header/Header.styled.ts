@@ -12,7 +12,7 @@ export const HeaderContainer = styled('header')<{
   width: 100%;
   z-index: 1000;
   transition: transform 0.3s ease-in-out, height 0.3s ease-in-out;
-  transform: translateY(${(props) => (props.isVisible ? '0' : '-100%')});
+  transform: translateY(${(props) => (props.isVisible ? '0' : '-150%')});
 `;
 
 export const HeaderTopRow = styled('div')`
@@ -20,6 +20,7 @@ export const HeaderTopRow = styled('div')`
   justify-content: space-between;
   align-items: center;
   padding: 1rem 0;
+  position: relative; /* 追加 */
 `;
 
 export const LogoWrapper = styled('div')`
@@ -66,27 +67,6 @@ export const HeaderExpanded = styled('div')<{ isActive: boolean }>`
 
   @media (min-width: 1401px) {
     display: ${(props) => (props.isActive ? 'block' : 'none')};
-  }
-`;
-
-export const HamburgerButton = styled.button`
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 10px;
-
-  @media (max-width: 1200px) {
-    display: block;
-  }
-
-  span {
-    display: block;
-    width: 25px;
-    height: 3px;
-    background-color: var(--primary-color);
-    margin: 5px 0;
-    transition: all 0.3s ease;
   }
 `;
 
@@ -165,8 +145,6 @@ export const SlideInMenuOverlay = styled('div')<{ isOpen: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
   opacity: ${(props) => (props.isOpen ? 1 : 0)};
   visibility: ${(props) => (props.isOpen ? 'visible' : 'hidden')};

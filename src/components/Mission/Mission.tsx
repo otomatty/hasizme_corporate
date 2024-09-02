@@ -1,7 +1,8 @@
-import { createSignal, For } from 'solid-js';
+import { createSignal, For, Show } from 'solid-js';
 import {
   MissionContainer,
   MissionItemWrapper,
+  MissionCatchphrase,
   MissionItem,
   MissionTitle,
   MissionContent,
@@ -13,6 +14,11 @@ import {
   CloseButton,
   ChevronWrapper,
   MissionIcon,
+  MobileItemWrapper,
+  MobileItem,
+  MobileTitle,
+  ModalOverlay,
+  ModalContent,
 } from './Mission.styled';
 import {
   FaSolidChevronDown,
@@ -20,6 +26,7 @@ import {
   FaSolidMicrochip,
   FaSolidRecycle,
 } from 'solid-icons/fa';
+import { createMediaQuery } from '@solid-primitives/media';
 
 export interface MissionData {
   title: string;
@@ -65,51 +72,98 @@ function Mission() {
   ];
 
   const [openMission, setOpenMission] = createSignal<string | null>(null);
+  const isDesktop = createMediaQuery('(min-width: 768px)');
 
   const toggleMission = (mission: string) => {
     setOpenMission(openMission() === mission ? null : mission);
   };
 
+  const getMissionIcon = (title: string) => {
+    const mission = missions.find((m) => m.title === title);
+    return mission ? <mission.icon /> : null;
+  };
+
   return (
     <>
       <MissionContainer>
+        <p>私たちのミッション</p>
+        <MissionCatchphrase>
+          「みんな」で持続可能な未来を創る
+        </MissionCatchphrase>
         <MainTitle>ミッションを実現する力</MainTitle>
-        <MissionItemWrapper>
+        <Show
+          when={isDesktop()}
+          fallback={
+            <MobileItemWrapper>
+              <For each={missions}>
+                {(mission) => (
+                  <MobileItem onClick={() => toggleMission(mission.title)}>
+                    <MobileTitle>{mission.title}</MobileTitle>
+                  </MobileItem>
+                )}
+              </For>
+            </MobileItemWrapper>
+          }
+        >
+          <MissionItemWrapper>
+            <For each={missions}>
+              {(mission, index) => (
+                <MissionItem
+                  onClick={() => toggleMission(mission.title)}
+                  index={index()}
+                >
+                  <MissionCircle class="mission-circle">
+                    <MissionTitle>{mission.title}</MissionTitle>
+                    <ChevronWrapper isOpen={openMission() === mission.title}>
+                      <FaSolidChevronDown size={16} color="white" />
+                    </ChevronWrapper>
+                  </MissionCircle>
+                </MissionItem>
+              )}
+            </For>
+          </MissionItemWrapper>
+        </Show>
+      </MissionContainer>
+      <Show when={isDesktop()}>
+        <MissionContentWrapper>
           <For each={missions}>
-            {(mission, index) => (
-              <MissionItem
-                onClick={() => toggleMission(mission.title)}
-                index={index()}
-              >
-                <MissionCircle class="mission-circle">
-                  <MissionTitle>{mission.title}</MissionTitle>
-                  <ChevronWrapper isOpen={openMission() === mission.title}>
-                    <FaSolidChevronDown size={16} color="white" />
-                  </ChevronWrapper>
-                </MissionCircle>
-              </MissionItem>
+            {(mission) => (
+              <MissionContent isOpen={openMission() === mission.title}>
+                <MissionContentTitle>
+                  <MissionIcon>{mission.icon && <mission.icon />}</MissionIcon>
+                  {mission.title}
+                </MissionContentTitle>
+                <For each={mission.content}>
+                  {(paragraph) => <MissionContentText innerHTML={paragraph} />}
+                </For>
+                <CloseButton onClick={() => setOpenMission(null)}>
+                  &times;
+                </CloseButton>
+              </MissionContent>
             )}
           </For>
-        </MissionItemWrapper>
-      </MissionContainer>
-      <MissionContentWrapper>
-        <For each={missions}>
-          {(mission) => (
-            <MissionContent isOpen={openMission() === mission.title}>
-              <MissionContentTitle>
-                <MissionIcon>{mission.icon && <mission.icon />}</MissionIcon>
-                {mission.title}
-              </MissionContentTitle>
-              <For each={mission.content}>
-                {(paragraph) => <MissionContentText innerHTML={paragraph} />}
-              </For>
-              <CloseButton onClick={() => setOpenMission(null)}>
-                &times;
-              </CloseButton>
-            </MissionContent>
-          )}
-        </For>
-      </MissionContentWrapper>
+        </MissionContentWrapper>
+      </Show>
+      <Show when={!isDesktop() && openMission()}>
+        <ModalOverlay onClick={() => setOpenMission(null)}>
+          <ModalContent onClick={(e) => e.stopPropagation()}>
+            <MissionContentTitle>
+              <MissionIcon>{getMissionIcon(openMission()!)}</MissionIcon>
+              {openMission()}
+            </MissionContentTitle>
+            <For
+              each={
+                missions.find((m) => m.title === openMission())?.content || []
+              }
+            >
+              {(paragraph) => <MissionContentText innerHTML={paragraph} />}
+            </For>
+            <CloseButton onClick={() => setOpenMission(null)}>
+              &times;
+            </CloseButton>
+          </ModalContent>
+        </ModalOverlay>
+      </Show>
     </>
   );
 }
