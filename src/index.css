@@ -31,16 +31,3 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-
-.description-enter-active,
-.description-leave-active {
-  transition: transform 0.5s;
-}
-
-.description-enter {
-  transform: translateY(0);
-}
-
-.description-leave-to {
-  transform: translateY(100%);
-}

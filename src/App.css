@@ -18,9 +18,29 @@ body {
   background-color: var(--base-color);
 }
 
+/* モバイルファースト: デフォルトのスタイル */
 #root {
   width: 100%;
+  max-width: 100vw;
   text-align: center;
+  overflow-x: hidden;
+}
+
+/* タブレット向け */
+@media screen and (min-width: 768px) {
+  #root {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
+/* デスクトップ向け */
+@media screen and (min-width: 1024px) {
+  #root {
+    width: 80%;
+    max-width: 1200px;
+    overflow-x: visible; /* PCでoverflow-hiddenを解除 */
+  }
 }
 
 a:hover {
