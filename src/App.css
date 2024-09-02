@@ -29,7 +29,6 @@ body {
 /* タブレット向け */
 @media screen and (min-width: 768px) {
   #root {
-    width: 90%;
     margin: 0 auto;
   }
 }
@@ -37,8 +36,6 @@ body {
 /* デスクトップ向け */
 @media screen and (min-width: 1024px) {
   #root {
-    width: 80%;
-    max-width: 1200px;
     overflow-x: visible; /* PCでoverflow-hiddenを解除 */
   }
 }
