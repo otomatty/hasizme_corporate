@@ -9,11 +9,10 @@ export const HeaderContainer = styled('header')<{
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
+  width: 100%;
   z-index: 1000;
   transition: transform 0.3s ease-in-out, height 0.3s ease-in-out;
   transform: translateY(${(props) => (props.isVisible ? '0' : '-100%')});
-  overflow: hidden;
 `;
 
 export const HeaderTopRow = styled('div')`
