@@ -1,7 +1,22 @@
-@import 'normalize.css';
+@import "normalize.css";
+
+@font-face {
+  font-family: "Noto Sans JP";
+  src: url("/fonts/NotoSansJP-Medium.ttf") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Noto Sans JP";
+  src: url("/fonts/NotoSansJP-Bold.ttf") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
 
 body {
   overflow-x: hidden;
+  font-family: "Noto Sans JP", sans-serif;
 }
 
 h1 {
