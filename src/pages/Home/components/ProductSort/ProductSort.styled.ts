@@ -1,12 +1,14 @@
-import { styled } from "solid-styled-components";
+import { styled } from 'solid-styled-components';
 
-export const SortContainer = styled("div")`
+export const SortContainer = styled('div')`
   display: flex;
-  justify-content: flex-end;
   margin-bottom: 1rem;
+  @media (min-width: 768px) {
+    justify-content: flex-end;
+  }
 `;
 
-export const SortSelect = styled("select")`
+export const SortSelect = styled('select')`
   padding: 0.5rem;
   border: 1px solid #dee2e6;
   border-radius: 4px;

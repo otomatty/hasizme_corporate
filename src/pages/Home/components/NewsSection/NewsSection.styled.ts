@@ -2,15 +2,19 @@ import { styled } from 'solid-styled-components';
 
 export const NewsContainer = styled.section`
   padding: 0 1rem 2rem 1rem;
-  max-width: 1200px;
   margin: 0 auto 4rem auto;
   box-sizing: border-box;
+  @media (min-width: 1024px) {
+    gap: 2rem;
+  }
 `;
 
 export const NewsTitle = styled.h2`
   font-size: 2rem;
   margin-bottom: 1rem;
   text-align: center;
+  @media (min-width: 1024px) {
+  }
 `;
 
 export const NewsContent = styled.div`

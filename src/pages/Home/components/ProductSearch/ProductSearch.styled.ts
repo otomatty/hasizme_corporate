@@ -1,69 +1,53 @@
-import { styled } from "solid-styled-components";
+import { styled } from 'solid-styled-components';
 
-export const SearchContainer = styled("div")`
+export const SearchContainer = styled('div')`
   position: relative;
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
 `;
 
-export const SearchInputContainer = styled("div")`
+export const SearchInputContainer = styled('div')`
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 1rem;
   margin-bottom: 1rem;
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
 `;
 
-export const SearchInput = styled("input")`
+export const SearchInput = styled('input')`
+  display: block;
+  width: 100%;
   flex-grow: 1;
   padding: 0.5rem;
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 1rem;
+  box-sizing: border-box;
+  @media (min-width: 768px) {
+    display: inline;
+    width: auto;
+  }
 `;
 
-export const ButtonContainer = styled("div")`
+export const ButtonContainer = styled('div')`
+  width: 100%;
   display: flex;
+  justify-content: space-between;
   gap: 0.5rem;
-`;
-
-export const SearchButton = styled("button")`
-  display: flex;
-  align-items: center;
-  padding: 0.5rem 1rem;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-left: 0.5rem;
-
-  &:hover {
-    background-color: #0056b3;
+  @media (min-width: 768px) {
+    width: auto;
   }
 `;
 
-export const ResetButton = styled("button")`
-  display: flex;
-  align-items: center;
-  padding: 0.5rem 1rem;
-  background-color: #a0a0a0;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-left: 0.5rem;
-
-  &:hover {
-    background-color: #5a6268;
-  }
-`;
-
-export const ButtonText = styled("span")`
+export const ButtonText = styled('span')`
   margin-left: 0.5rem;
 `;
 
-export const SuggestionList = styled("ul")`
+export const SuggestionList = styled('ul')`
   position: absolute;
   top: 100%;
   left: 0;
@@ -80,7 +64,7 @@ export const SuggestionList = styled("ul")`
   z-index: 1000;
 `;
 
-export const SuggestionItem = styled("li")`
+export const SuggestionItem = styled('li')`
   padding: 0.5rem;
   cursor: pointer;
 
