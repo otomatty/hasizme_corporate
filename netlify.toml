@@ -1,9 +1,0 @@
-[build]
-  command = "npm run build"  # あるいはあなたのビルドコマンド
-  publish = "dist"  # ビルド出力ディレクトリ
-  functions = "netlify/functions"  # Functions ディレクトリ
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
