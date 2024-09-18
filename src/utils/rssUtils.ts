@@ -17,12 +17,16 @@ export async function fetchNoteRssFeed(): Promise<RssItem[]> {
     });
     const result = parser.parse(xmlData);
 
-    return result.rss.channel.item.map((item: any) => ({
-      title: item.title,
-      link: item.link,
-      pubDate: item.pubDate,
-      thumbnail: item['media:thumbnail']?.['@_url'] || '',
-    }));
+    return result.rss.channel.item.map((item: any) => {
+      const thumbnailUrl = item['media:thumbnail']?.['@_url'] || '';
+      console.log('Thumbnail URL:', thumbnailUrl); // サムネイルURLをログに出力
+      return {
+        title: item.title,
+        link: item.link,
+        pubDate: item.pubDate,
+        thumbnail: thumbnailUrl,
+      };
+    });
   } catch (error) {
     console.error('RSSフィードの取得に失敗しました:', error);
     return [];
