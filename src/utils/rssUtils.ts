@@ -13,14 +13,14 @@ export async function fetchNoteRssFeed(): Promise<RssItem[]> {
     const xmlData = await response.text();
     const parser = new XMLParser({
       ignoreAttributes: false,
-      attributeNamePrefix: '@_',
+      attributeNamePrefix: '', // プレフィックスを空文字に設定
     });
     const result = parser.parse(xmlData);
 
     console.log('Parsed XML Result:', result); // パース結果をログに出力
 
     return result.rss.channel.item.map((item: any) => {
-      const thumbnailUrl = item['media:thumbnail']?.['@_url'] || '';
+      const thumbnailUrl = item['media:thumbnail']?.url || '';
       console.log('Item:', item); // 各アイテムをログに出力
       console.log('Thumbnail URL:', thumbnailUrl); // サムネイルURLをログに出力
       return {
