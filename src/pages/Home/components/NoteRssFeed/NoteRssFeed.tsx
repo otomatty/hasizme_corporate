@@ -3,10 +3,10 @@ import { fetchNoteRssFeed } from '../../../../utils/rssUtils';
 import {
   FeedContainer,
   FeedItem,
-  FeedTitle,
-  FeedDate,
   FeedThumbnail,
   FeedContent,
+  FeedTitle,
+  FeedDate,
 } from './NoteRssFeed.styled';
 
 export default function NoteRssFeed() {

@@ -4,7 +4,7 @@ interface RssItem {
   title: string;
   link: string;
   pubDate: string;
-  thumbnail: string; // サムネイル画像のURLを追加
+  thumbnail: string;
 }
 
 export async function fetchNoteRssFeed(): Promise<RssItem[]> {
@@ -12,7 +12,8 @@ export async function fetchNoteRssFeed(): Promise<RssItem[]> {
     const response = await fetch('/fetchRss');
     const xmlData = await response.text();
     const parser = new XMLParser({
-      ignoreAttributes: false, // 属性を無視しないように設定
+      ignoreAttributes: false,
+      attributeNamePrefix: '@_',
     });
     const result = parser.parse(xmlData);
 
@@ -20,7 +21,7 @@ export async function fetchNoteRssFeed(): Promise<RssItem[]> {
       title: item.title,
       link: item.link,
       pubDate: item.pubDate,
-      thumbnail: item['media:thumbnail']?.['@_url'] || '', // サムネイル画像のURLを取得
+      thumbnail: item['media:thumbnail']?.['@_url'] || '',
     }));
   } catch (error) {
     console.error('RSSフィードの取得に失敗しました:', error);
