@@ -1,16 +1,35 @@
-import { styled } from "solid-styled-components";
+import { styled } from 'solid-styled-components';
 
 export const FeedContainer = styled.div`
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+  font-family: 'Arial', sans-serif;
 `;
 
 export const FeedItem = styled.div`
-  margin-bottom: 20px;
-  padding: 15px;
-  border: 1px solid #e0e0e0;
-  border-radius: 5px;
+  display: flex;
+  margin-bottom: 30px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+`;
+
+export const FeedThumbnail = styled.img`
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+`;
+
+export const FeedContent = styled.div`
+  flex: 1;
+  padding: 20px;
 `;
 
 export const FeedTitle = styled.a`
@@ -18,14 +37,16 @@ export const FeedTitle = styled.a`
   color: #333;
   text-decoration: none;
   font-weight: bold;
+  display: block;
+  margin-bottom: 10px;
 
   &:hover {
-    text-decoration: underline;
+    color: #0066cc;
   }
 `;
 
 export const FeedDate = styled.p`
   font-size: 14px;
   color: #666;
-  margin-top: 5px;
+  margin: 0;
 `;

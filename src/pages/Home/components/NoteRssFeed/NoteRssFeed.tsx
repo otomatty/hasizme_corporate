@@ -1,11 +1,13 @@
-import { createResource, For } from "solid-js";
-import { fetchNoteRssFeed } from "../../../../utils/rssUtils";
+import { createResource, For } from 'solid-js';
+import { fetchNoteRssFeed } from '../../../../utils/rssUtils';
 import {
   FeedContainer,
   FeedItem,
   FeedTitle,
   FeedDate,
-} from "./NoteRssFeed.styled";
+  FeedThumbnail,
+  FeedContent,
+} from './NoteRssFeed.styled';
 
 export default function NoteRssFeed() {
   const [feed] = createResource(() => fetchNoteRssFeed());
@@ -16,16 +18,19 @@ export default function NoteRssFeed() {
       <For each={feed()} fallback={<p>読み込み中...</p>}>
         {(item) => (
           <FeedItem>
-            <FeedTitle
-              href={item.link}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {item.title}
-            </FeedTitle>
-            <FeedDate>
-              {new Date(item.pubDate).toLocaleDateString("ja-JP")}
-            </FeedDate>
+            <FeedThumbnail src={item.thumbnail} alt={item.title} />
+            <FeedContent>
+              <FeedTitle
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {item.title}
+              </FeedTitle>
+              <FeedDate>
+                {new Date(item.pubDate).toLocaleDateString('ja-JP')}
+              </FeedDate>
+            </FeedContent>
           </FeedItem>
         )}
       </For>

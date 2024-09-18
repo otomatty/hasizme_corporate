@@ -65,7 +65,7 @@ export const HeaderExpanded = styled('div')<{ isActive: boolean }>`
   display: none;
   background-color: #f5f5f5;
 
-  @media (min-width: 1401px) {
+  @media (min-width: 1200px) {
     display: ${(props) => (props.isActive ? 'block' : 'none')};
   }
 `;
