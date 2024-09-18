@@ -9,6 +9,7 @@ import ContactUsSection from './components/ContactUsSection/ContactUsSection';
 import OfficesSection from './components/OfficesSection/OfficesSection';
 import CSRSection from './components/CSRSection/CSRSection';
 import CareersSection from './components/CareersSection/CareersSection';
+import NoteRssFeed from './components/NoteRssFeed/NoteRssFeed';
 
 function Home() {
   return (
@@ -19,6 +20,7 @@ function Home() {
       <ServicesSection />
       <ProductsSection />
       <BlogSection />
+      <NoteRssFeed />
       <OfficesSection />
       <CareersSection />
       <CSRSection />
