@@ -5,7 +5,7 @@ import {
   FaSolidUsers,
   FaSolidHandshake,
   FaSolidUserTie,
-  FaRegularCircleQuestion,
+  // FaRegularCircleQuestion,
 } from 'solid-icons/fa';
 
 export type SubMenuItem = {
@@ -76,10 +76,10 @@ export const menuItems: MenuItem[] = [
       { title: '福利厚生', link: '/careers/benefits' },
     ],
   },
-  {
-    title: 'よくある質問',
-    link: '/faq',
-    icon: FaRegularCircleQuestion,
-    subItems: [],
-  },
+  // {
+  //   title: 'よくある質問',
+  //   link: '/faq',
+  //   icon: FaRegularCircleQuestion,
+  //   subItems: [],
+  // },
 ];

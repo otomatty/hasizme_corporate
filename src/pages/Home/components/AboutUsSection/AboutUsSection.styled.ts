@@ -49,13 +49,6 @@ export const AboutUsContent = styled('div')`
   }
 `;
 
-export const AboutUsSectionTitle = styled('h3')`
-  font-size: 1.75rem;
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
-  color: #444;
-`;
-
 export const AboutUsSectionContent = styled('p')`
   font-size: 1.125rem;
   color: #666;

@@ -1,8 +1,8 @@
-import { createSignal, For, Show } from "solid-js";
-import Container from "../../../../components/Container/Container";
+import { createSignal, For, Show } from 'solid-js';
+import Container from '../../../../components/Container/Container';
+import SectionTitle from '../../../../components/SectionTitle/SectionTitle';
 import {
   OfficesContainer,
-  OfficesTitle,
   OfficesContent,
   OfficesMapAndDetails,
   OfficesList,
@@ -10,9 +10,9 @@ import {
   TabContainer,
   TabButton,
   OfficeDetails,
-} from "./OfficesSection.styled";
-import { Office } from "../../../../types/offices";
-import { offices, prefectures } from "../../../../data/officesData";
+} from './OfficesSection.styled';
+import { Office } from '../../../../types/offices';
+import { offices, prefectures } from '../../../../data/officesData';
 
 function OfficesSection() {
   const [selectedOffice, setSelectedOffice] = createSignal<Office>(offices[0]);
@@ -23,7 +23,11 @@ function OfficesSection() {
   return (
     <OfficesContainer>
       <Container>
-        <OfficesTitle>営業所・関連企業</OfficesTitle>
+        <SectionTitle
+          id="offices-title"
+          title="営業所・関連企業"
+          description="全国各地に展開する営業所と関連企業をご紹介します。"
+        />
         <OfficesContent>
           <OfficesMapAndDetails>
             <Show

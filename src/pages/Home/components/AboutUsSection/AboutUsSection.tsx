@@ -2,9 +2,9 @@ import {
   AboutUsContainer,
   AboutUsImage,
   AboutUsContent,
-  AboutUsSectionTitle,
   AboutUsSectionContent,
-} from "./AboutUsSection.styled";
+} from './AboutUsSection.styled';
+import SectionTitle from '../../../../components/SectionTitle/SectionTitle';
 
 function AboutUsSection() {
   return (
@@ -14,7 +14,7 @@ function AboutUsSection() {
         alt="About Us Image"
       />
       <AboutUsContent>
-        <AboutUsSectionTitle>私たちについて</AboutUsSectionTitle>
+        <SectionTitle id="about-us-title" title="私たちについて" align="left" />
         <AboutUsSectionContent>
           <p>
             橋爪商事は1928年の創業以来、建設資材や工業資材を提供することで、物流の担い手として、地域に育てられ地域に寄り添って成長してきました。

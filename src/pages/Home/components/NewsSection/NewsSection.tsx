@@ -2,23 +2,24 @@ import { createResource, For, Show } from 'solid-js';
 import { A } from '@solidjs/router';
 import {
   NewsContainer,
-  NewsTitle,
   NewsContent,
   NewsList,
   NewsItem,
   NewsItemTitle,
   NewsDate,
   MoreNewsButton,
+  NewsItemDetails,
 } from './NewsSection.styled';
 import { NewsItem as NewsItemType } from '../../../../types/news';
 import { fetchNewsItems } from '../../../../newt/newtClient';
+import SectionTitle from '../../../../components/SectionTitle/SectionTitle';
 
 function NewsSection() {
   const [news] = createResource<NewsItemType[]>(() => fetchNewsItems(5));
 
   return (
     <NewsContainer>
-      <NewsTitle>お知らせ</NewsTitle>
+      <SectionTitle id="news-title" title="お知らせ" align="center" />
       <NewsContent>
         <Show
           when={!news.loading}
@@ -28,14 +29,14 @@ function NewsSection() {
             <For each={news()}>
               {(item) => (
                 <NewsItem as={A} href={`/news/${item.slug}`}>
-                  <div>
+                  <NewsItemDetails>
                     <NewsDate>
                       {new Date(item._sys.createdAt).toLocaleDateString(
                         'ja-JP'
                       )}
                     </NewsDate>
                     <NewsItemTitle>{item.newsTitle}</NewsItemTitle>
-                  </div>
+                  </NewsItemDetails>
                 </NewsItem>
               )}
             </For>

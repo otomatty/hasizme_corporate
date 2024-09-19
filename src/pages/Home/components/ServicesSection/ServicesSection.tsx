@@ -1,6 +1,7 @@
 import { createSignal, onMount, createEffect } from 'solid-js';
 import { services } from '../../../../data/servicesData';
 import Container from '../../../../components/Container/Container';
+import SectionTitle from '../../../../components/SectionTitle/SectionTitle';
 import { useScrollLogic } from '../../../../utils/scrollLogic';
 import Button from '../../../../components/Button/Button';
 import {
@@ -10,6 +11,7 @@ import {
   ServiceCard,
   ServiceIcon,
   ServiceTitle,
+  ServicesContentWrapper,
   ServiceDescriptionContainer,
   ServiceDescriptionTitle,
   ServiceDescriptionText,
@@ -33,6 +35,7 @@ function ServicesSection() {
   const [isTablet, setIsTablet] = createSignal(window.innerWidth >= 768);
   const [isModalOpen, setIsModalOpen] = createSignal(false);
   const { isScrollingDown, controlScroll } = useScrollLogic();
+  const [sectionTitleHeight, setSectionTitleHeight] = createSignal(0);
 
   const handleCardClick = (service: ServiceType, index: number) => {
     if (isDesktop()) {
@@ -85,6 +88,10 @@ function ServicesSection() {
   onMount(() => {
     window.addEventListener('resize', handleResize);
     window.addEventListener('scroll', handleScroll);
+    const sectionTitleElement = document.getElementById('section-title');
+    if (sectionTitleElement) {
+      setSectionTitleHeight(sectionTitleElement.offsetHeight);
+    }
     return () => {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('scroll', handleScroll);
@@ -112,51 +119,62 @@ function ServicesSection() {
                 : '2rem',
           }}
         >
-          <ServicesList>
-            {services.map((service, index) => (
-              <ServiceCard
-                selected={selectedService()?.title === service.title}
-                onClick={() => handleCardClick(service, index)}
-              >
-                <ServiceIcon>{service.icon}</ServiceIcon>
-                <ServiceTitle>{service.title}</ServiceTitle>
-              </ServiceCard>
-            ))}
-          </ServicesList>
-          {isTablet() && (
-            <ServiceDescriptionContainer>
-              <SliderContainer>
-                {services.map((service, index) => (
-                  <Slide
-                    class={
-                      selectedService()?.title === service.title
-                        ? 'active'
-                        : currentIndex() > index
-                        ? 'inactive'
-                        : ''
-                    }
-                    data-service={service.title}
-                  >
-                    <DescriptionWrapper>
-                      <ServiceDescriptionTitle>
-                        {service.title}
-                      </ServiceDescriptionTitle>
-                      <ServiceDescriptionText>
-                        {service.description}
-                      </ServiceDescriptionText>
-                    </DescriptionWrapper>
-                  </Slide>
-                ))}
-              </SliderContainer>
-            </ServiceDescriptionContainer>
-          )}
-          {isDesktop() && (
-            <IndicatorContainer>
-              {services.map((_, index) => (
-                <IndicatorDot active={currentIndex() === index} />
+          <SectionTitle
+            id="services-title"
+            title="取扱商品"
+            description="当社が提供する多様なサービスをご覧ください。"
+          />
+          <ServicesContentWrapper
+            style={{
+              height: `calc(100% - 10rem - ${sectionTitleHeight()}px)`,
+            }}
+          >
+            <ServicesList>
+              {services.map((service, index) => (
+                <ServiceCard
+                  selected={selectedService()?.title === service.title}
+                  onClick={() => handleCardClick(service, index)}
+                >
+                  <ServiceIcon>{service.icon}</ServiceIcon>
+                  <ServiceTitle>{service.title}</ServiceTitle>
+                </ServiceCard>
               ))}
-            </IndicatorContainer>
-          )}
+            </ServicesList>
+            {isTablet() && (
+              <ServiceDescriptionContainer>
+                <SliderContainer>
+                  {services.map((service, index) => (
+                    <Slide
+                      class={
+                        selectedService()?.title === service.title
+                          ? 'active'
+                          : currentIndex() > index
+                          ? 'inactive'
+                          : ''
+                      }
+                      data-service={service.title}
+                    >
+                      <DescriptionWrapper>
+                        <ServiceDescriptionTitle>
+                          {service.title}
+                        </ServiceDescriptionTitle>
+                        <ServiceDescriptionText>
+                          {service.description}
+                        </ServiceDescriptionText>
+                      </DescriptionWrapper>
+                    </Slide>
+                  ))}
+                </SliderContainer>
+              </ServiceDescriptionContainer>
+            )}
+            {isDesktop() && (
+              <IndicatorContainer>
+                {services.map((_, index) => (
+                  <IndicatorDot active={currentIndex() === index} />
+                ))}
+              </IndicatorContainer>
+            )}
+          </ServicesContentWrapper>
         </ServicesWrapper>
       </Container>
       <ModalOverlay isOpen={isModalOpen()}>

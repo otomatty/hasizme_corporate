@@ -11,18 +11,18 @@ export interface ServiceData {
 }
 
 export const services: ServiceData[] = [
-  {
-    id: 'development-sales',
-    icon: '📈',
-    title: '開発営業',
-    description:
-      '21世紀の日本の産業界は、これまでにない新商品の開発に心血を注いでおります。それに伴い、商品のライフサイクルも著しいものがあります。そうした時代の環境に、我々開発営業部は顧客である官公庁・土木コンサル様に対して新製品のご紹介、そして物件情報をもとに工事計画を把握し、ニーズにお応えする商品選定をして提案営業を積極的に展開しております。',
-    products: ['新製品情報提供', '工事計画分析', 'カスタマイズ商品提案'],
-    contact: 'development-sales@example.com',
-    blogUrl: '/category/development-sales',
-    imageUrl: '/images/development-sales.jpg',
-    features: ['最新の市場動向分析', 'カスタマイズされた提案', '迅速な対応'],
-  },
+  // {
+  //   id: 'development-sales',
+  //   icon: '📈',
+  //   title: '開発営業',
+  //   description:
+  //     '21世紀の日本の産業界は、これまでにない新商品の開発に心血を注いでおります。それに伴い、商品のライフサイクルも著しいものがあります。そうした時代の環境に、我々開発営業部は顧客である官公庁・土木コンサル様に対して新製品のご紹介、そして物件情報をもとに工事計画を把握し、ニーズにお応えする商品選定をして提案営業を積極的に展開しております。',
+  //   products: ['新製品情報提供', '工事計画分析', 'カスタマイズ商品提案'],
+  //   contact: 'development-sales@example.com',
+  //   blogUrl: '/category/development-sales',
+  //   imageUrl: '/images/development-sales.jpg',
+  //   features: ['最新の市場動向分析', 'カスタマイズされた提案', '迅速な対応'],
+  // },
   {
     id: 'building-materials',
     icon: '🏗️',

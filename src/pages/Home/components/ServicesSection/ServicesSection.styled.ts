@@ -1,18 +1,23 @@
 import { styled } from 'solid-styled-components';
 
-export const ServicesContainer = styled('div')`
+export const ServicesContainer = styled('section')`
   display: flex;
   background-color: #f9f9f9;
   width: 100%;
   position: relative;
 
   @media (min-width: 1024px) {
-    height: 700vh; /* 高さを1200vhに設定 */
+    height: 600vh;
   }
 `;
 
-export const ServicesWrapper = styled('div')`
+export const ServicesContentWrapper = styled('div')`
+  width: 100%;
   display: flex;
+  /* 高さは動的に設定されるため、ここでは設定しない */
+`;
+
+export const ServicesWrapper = styled('div')`
   width: 100%;
   position: sticky;
   top: 0; /* 固定位置を調整 */
@@ -66,11 +71,11 @@ export const ServiceCard = styled('div')<{ selected: boolean }>`
   cursor: pointer;
 
   @media (min-width: 768px) {
-    height: calc(100% / 7);
+    height: calc(100% / 6);
     flex-direction: row;
     align-items: center;
     gap: 0;
-    transform: ${({ selected }) => (selected ? 'scale(1.1)' : 'scale(1)')};
+    transform: ${({ selected }) => (selected ? 'scale(1.05)' : 'scale(1)')};
     &:hover {
       transform: scale(1.05);
       box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2);
