@@ -1,10 +1,10 @@
-import { styled } from 'solid-styled-components';
+import { styled } from "solid-styled-components";
 
 export const FeedContainer = styled.div`
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
 `;
 
 export const FeedItem = styled.div`
@@ -22,9 +22,9 @@ export const FeedItem = styled.div`
 `;
 
 export const FeedThumbnail = styled.img`
-  width: 200px;
+  width: 150px;
   height: 150px;
-  object-fit: cover;
+  object-fit: contain;
 `;
 
 export const FeedContent = styled.div`
