@@ -1,6 +1,8 @@
 {
+  "name": "hasizme_corporate",
+  "version": "1.0.0",
   "scripts": {
-    "frontend:dev": "cd frontend && npm run dev",
+    "build": "cd frontend && npm install && npm run build",
     "frontend:build": "cd frontend && npm run build",
     "backend:dev": "cd backend && wrangler dev",
     "backend:deploy": "cd backend && wrangler publish"
