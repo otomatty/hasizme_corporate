@@ -32,7 +32,16 @@ export async function fetchNoteRssFeed(): Promise<RssItem[]> {
     }
 
     const xmlData = await response.text();
-    console.log("Received XML data:", xmlData.substring(0, 200) + "..."); // 最初の200文字のみログ出力
+    console.log("Received data:", xmlData.substring(0, 200) + "..."); // 最初の200文字のみログ出力
+
+    // HTMLが返ってきた場合の処理
+    if (xmlData.trim().startsWith("<!DOCTYPE html>")) {
+      console.error("Received HTML instead of RSS feed");
+      return sampleRssItems.map((item) => ({
+        ...item,
+        thumbnail: DEFAULT_THUMBNAIL,
+      }));
+    }
 
     const parser = new XMLParser({
       ignoreAttributes: false,
@@ -61,6 +70,10 @@ export async function fetchNoteRssFeed(): Promise<RssItem[]> {
     console.error("RSSフィードの取得に失敗しました:", error);
     console.error("Error details:", (error as Error).message);
     console.error("Error stack:", (error as Error).stack);
-    return [];
+    // エラーが発生した場合もサンプルデータを返す
+    return sampleRssItems.map((item) => ({
+      ...item,
+      thumbnail: DEFAULT_THUMBNAIL,
+    }));
   }
 }
