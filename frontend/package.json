@@ -1,0 +1,38 @@
+{
+  "name": "hasizme",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@mbarzda/solid-i18next": "^1.4.1",
+    "@solid-primitives/i18n": "^2.1.1",
+    "@solid-primitives/media": "^2.2.9",
+    "@solidjs/router": "^0.14.3",
+    "@splidejs/splide": "^4.1.4",
+    "@splidejs/splide-extension-auto-scroll": "^0.5.3",
+    "@types/d3": "^7.4.3",
+    "d3": "^7.9.0",
+    "fast-xml-parser": "^4.4.1",
+    "gsap": "^3.12.5",
+    "i18next": "^23.13.0",
+    "newt-client-js": "^3.3.4",
+    "node-fetch": "^2.7.0",
+    "normalize.css": "^8.0.1",
+    "solid-i18n": "^1.1.0",
+    "solid-icons": "^1.1.0",
+    "solid-js": "^1.8.21",
+    "solid-styled-components": "^0.28.5",
+    "solid-transition-group": "^0.2.3",
+    "swiper": "^11.1.9"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.3",
+    "vite": "^5.4.0",
+    "vite-plugin-solid": "^2.10.2"
+  }
+}

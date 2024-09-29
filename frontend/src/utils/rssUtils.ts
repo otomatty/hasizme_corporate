@@ -24,8 +24,8 @@ export async function fetchNoteRssFeed(): Promise<RssItem[]> {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    const data = await response.json();
-    return data.map((item: any) => ({
+    const data: RssItem[] = await response.json();
+    return data.map((item) => ({
       title: item.title,
       link: item.link,
       pubDate: item.pubDate,
