@@ -1,6 +1,3 @@
-import { XMLParser } from "fast-xml-parser";
-import { sampleRssItems } from "../data/sampleRssData";
-
 interface RssItem {
   title: string;
   link: string;
@@ -10,70 +7,32 @@ interface RssItem {
 
 const DEFAULT_THUMBNAIL = "/logo.svg"; // デフォルトのサムネイル画像パスを設定
 
-export async function fetchNoteRssFeed(): Promise<RssItem[]> {
-  console.log("fetchNoteRssFeed called"); // 関数が呼び出されたことを確認
+const workerUrl = import.meta.env.VITE_WORKER_URL;
 
-  if (import.meta.env.DEV) {
-    console.log("Development environment detected, returning sample data");
-    // 開発環境の場合、サンプルデータを返す
-    return sampleRssItems.map((item) => ({
-      ...item,
-      thumbnail: DEFAULT_THUMBNAIL,
-    }));
+if (!workerUrl) {
+  console.error("VITE_WORKER_URL is not set in the environment variables");
+}
+
+export async function fetchNoteRssFeed(): Promise<RssItem[]> {
+  if (!workerUrl) {
+    console.error("Worker URL is not set");
+    return [];
   }
 
   try {
-    console.log("Fetching RSS feed from /fetchRss");
-    const response = await fetch("/fetchRss");
-    console.log("Response status:", response.status);
-
+    const response = await fetch(workerUrl);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-
-    const xmlData = await response.text();
-    console.log("Received data:", xmlData.substring(0, 200) + "..."); // 最初の200文字のみログ出力
-
-    // HTMLが返ってきた場合の処理
-    if (xmlData.trim().startsWith("<!DOCTYPE html>")) {
-      console.error("Received HTML instead of RSS feed");
-      return sampleRssItems.map((item) => ({
-        ...item,
-        thumbnail: DEFAULT_THUMBNAIL,
-      }));
-    }
-
-    const parser = new XMLParser({
-      ignoreAttributes: false,
-      attributeNamePrefix: "",
-    });
-    const result = parser.parse(xmlData);
-
-    console.log("Parsed XML Result:", JSON.stringify(result, null, 2));
-
-    if (!result.rss || !result.rss.channel || !result.rss.channel.item) {
-      throw new Error("Invalid RSS structure");
-    }
-
-    return result.rss.channel.item.map((item: any) => {
-      const thumbnailUrl = item["media:thumbnail"] || DEFAULT_THUMBNAIL;
-      console.log("Processing item:", item.title);
-      console.log("Thumbnail URL:", thumbnailUrl);
-      return {
-        title: item.title,
-        link: item.link,
-        pubDate: item.pubDate,
-        thumbnail: thumbnailUrl,
-      };
-    });
+    const data = await response.json();
+    return data.map((item: any) => ({
+      title: item.title,
+      link: item.link,
+      pubDate: item.pubDate,
+      thumbnail: item.thumbnail || DEFAULT_THUMBNAIL,
+    }));
   } catch (error) {
     console.error("RSSフィードの取得に失敗しました:", error);
-    console.error("Error details:", (error as Error).message);
-    console.error("Error stack:", (error as Error).stack);
-    // エラーが発生した場合もサンプルデータを返す
-    return sampleRssItems.map((item) => ({
-      ...item,
-      thumbnail: DEFAULT_THUMBNAIL,
-    }));
+    return [];
   }
 }
