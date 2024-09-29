@@ -1,4 +1,4 @@
-import { createResource, For } from "solid-js";
+import { createResource, For, createEffect } from "solid-js";
 import { fetchNoteRssFeed } from "../../../../utils/rssUtils";
 import Container from "../../../../components/Container/Container";
 import {
@@ -17,6 +17,11 @@ import {
 
 export default function NoteRssFeed() {
   const [feed] = createResource(() => fetchNoteRssFeed());
+
+  createEffect(() => {
+    console.log("Feed resource state:", feed.state);
+    console.log("Feed data:", feed());
+  });
 
   return (
     <FeedContainer>
