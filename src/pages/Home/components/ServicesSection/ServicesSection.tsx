@@ -1,9 +1,9 @@
-import { createSignal, onMount, createEffect } from 'solid-js';
-import { services } from '../../../../data/servicesData';
-import Container from '../../../../components/Container/Container';
-import SectionTitle from '../../../../components/SectionTitle/SectionTitle';
-import { useScrollLogic } from '../../../../utils/scrollLogic';
-import Button from '../../../../components/Button/Button';
+import { createSignal, onMount, createEffect } from "solid-js";
+import { services } from "../../../../data/servicesData";
+import Container from "../../../../components/Container/Container";
+import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
+import { useScrollLogic } from "../../../../utils/scrollLogic";
+import Button from "../../../../components/Button/Button";
 import {
   ServicesContainer,
   ServicesWrapper,
@@ -22,7 +22,7 @@ import {
   IndicatorDot,
   ModalOverlay,
   ModalContent,
-} from './ServicesSection.styled';
+} from "./ServicesSection.styled";
 
 type ServiceType = (typeof services)[0];
 
@@ -42,10 +42,10 @@ function ServicesSection() {
       setSelectedService(service);
       setCurrentIndex(index);
       const sectionTop =
-        document.getElementById('services-section')?.offsetTop || 0;
+        document.getElementById("services-section")?.offsetTop || 0;
       const sectionHeight = window.innerHeight;
       const targetScrollPosition = sectionTop + sectionHeight * index;
-      window.scrollTo({ top: targetScrollPosition, behavior: 'smooth' });
+      window.scrollTo({ top: targetScrollPosition, behavior: "smooth" });
     } else if (isTablet()) {
       setSelectedService(service);
       setCurrentIndex(index);
@@ -61,12 +61,12 @@ function ServicesSection() {
       controlScroll();
       const scrollPosition = window.scrollY;
       const sectionTop =
-        document.getElementById('services-section')?.offsetTop || 0;
+        document.getElementById("services-section")?.offsetTop || 0;
 
       setIsAtTop(scrollPosition >= sectionTop);
 
       if (scrollPosition >= sectionTop) {
-        document.documentElement.style.scrollBehavior = 'smooth';
+        document.documentElement.style.scrollBehavior = "smooth";
         const index = Math.round(
           (scrollPosition - sectionTop) / window.innerHeight
         );
@@ -75,7 +75,7 @@ function ServicesSection() {
       } else {
         setCurrentIndex(-1);
         setSelectedService(null);
-        document.documentElement.style.scrollBehavior = 'auto';
+        document.documentElement.style.scrollBehavior = "auto";
       }
     }
   };
@@ -86,15 +86,15 @@ function ServicesSection() {
   };
 
   onMount(() => {
-    window.addEventListener('resize', handleResize);
-    window.addEventListener('scroll', handleScroll);
-    const sectionTitleElement = document.getElementById('section-title');
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("scroll", handleScroll);
+    const sectionTitleElement = document.getElementById("section-title");
     if (sectionTitleElement) {
       setSectionTitleHeight(sectionTitleElement.offsetHeight);
     }
     return () => {
-      window.removeEventListener('resize', handleResize);
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("scroll", handleScroll);
     };
   });
 
@@ -111,12 +111,12 @@ function ServicesSection() {
         <ServicesWrapper
           id="services-wrapper"
           style={{
-            'padding-top':
+            "padding-top":
               isAtTop() && isDesktop()
                 ? isScrollingDown()
-                  ? '2rem'
-                  : '10rem'
-                : '2rem',
+                  ? "2rem"
+                  : "6rem"
+                : "2rem",
           }}
         >
           <SectionTitle
@@ -147,10 +147,10 @@ function ServicesSection() {
                     <Slide
                       class={
                         selectedService()?.title === service.title
-                          ? 'active'
+                          ? "active"
                           : currentIndex() > index
-                          ? 'inactive'
-                          : ''
+                          ? "inactive"
+                          : ""
                       }
                       data-service={service.title}
                     >

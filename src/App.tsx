@@ -1,51 +1,51 @@
-import { Router, Route } from '@solidjs/router';
-import { createSignal, onMount, onCleanup } from 'solid-js';
+import { Router, Route } from "@solidjs/router";
+import { createSignal, onMount, onCleanup } from "solid-js";
 // 共通コンポーネント
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 import {
   SlideInMenuContainer,
   SlideInMenuOverlay,
   CloseButton,
-} from './components/Header/Header.styled';
-import Navbar from './components/Navbar/Navbar';
-import { menuItems } from './data/menuItemsData';
-import { MobileContactButtons } from './components/ContactButtons/ContactButtons';
+} from "./components/Header/Header.styled";
+import Navbar from "./components/Navbar/Navbar";
+import { menuItems } from "./data/menuItemsData";
+import { MobileContactButtons } from "./components/ContactButtons/ContactButtons";
 // ページコンポーネント
-import Home from './pages/Home/Home';
+import Home from "./pages/Home/Home";
 // 会社情報
-import AboutUs from './pages/AboutUs/AboutUs';
-import CompanyProfile from './pages/CompanyProfile/CompanyProfile';
-import OrganizationChart from './pages/OrganizationChart/OrganizationChart';
-import History from './pages/History/History';
-import PostDisasterJourney from './pages/PostDisasterJourney/PostDisasterJourney';
+import AboutUs from "./pages/AboutUs/AboutUs";
+import CompanyProfile from "./pages/CompanyProfile/CompanyProfile";
+import OrganizationChart from "./pages/OrganizationChart/OrganizationChart";
+import History from "./pages/History/History";
+import PostDisasterJourney from "./pages/PostDisasterJourney/PostDisasterJourney";
 // 事業紹介
-import Services from './pages/Services/Services';
-import ServiceDetail from './pages/ServiceDetail/ServiceDetail';
+import Services from "./pages/Services/Services";
+import ServiceDetail from "./pages/ServiceDetail/ServiceDetail";
 // 商品紹介
-import Products from './pages/Products/Products';
+import Products from "./pages/Products/Products";
 // お知らせ
-import News from './pages/News/News';
-import NewsDetail from './pages/NewsDetail/NewsDetail';
+import News from "./pages/News/News";
+import NewsDetail from "./pages/NewsDetail/NewsDetail";
 // 採用情報
-import Careers from './pages/Careers/Careers';
+import Careers from "./pages/Careers/Careers";
 // 橋爪倶楽部（オウンドメディア）
-import Blog from './pages/Blog/Blog';
-import BlogPost from './pages/BlogPost/BlogPost';
-import CategoryPosts from './pages/CategoryPosts/CategoryPosts';
+import Blog from "./pages/Blog/Blog";
+import BlogPost from "./pages/BlogPost/BlogPost";
+import CategoryPosts from "./pages/CategoryPosts/CategoryPosts";
 // 事業所情報
-import Offices from './pages/Offices/Offices';
+import Offices from "./pages/Offices/Offices";
 // CSR活動
-import CSR from './pages/CSR/CSR';
-import CSRDetail from './pages/CSRDetail/CSRDetail';
+import CSR from "./pages/CSR/CSR";
+import CSRDetail from "./pages/CSRDetail/CSRDetail";
 // よくある質問
-import FAQ from './pages/FAQ/FAQ';
+import FAQ from "./pages/FAQ/FAQ";
 // お問い合わせ
-import Contact from './pages/Contact/Contact';
+import Contact from "./pages/Contact/Contact";
 // 資料請求
-import RequestMaterials from './pages/RequestMaterials/RequestMaterials';
+import RequestMaterials from "./pages/RequestMaterials/RequestMaterials";
 
-import './App.css';
+import "./App.css";
 
 const App = (props: { children?: any }) => {
   const [mainMarginTop, setMainMarginTop] = createSignal(0);
@@ -69,11 +69,11 @@ const App = (props: { children?: any }) => {
   };
 
   onMount(() => {
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
   });
 
   onCleanup(() => {
-    window.removeEventListener('resize', handleResize);
+    window.removeEventListener("resize", handleResize);
   });
 
   return (
@@ -94,7 +94,7 @@ const App = (props: { children?: any }) => {
         />
         <MobileContactButtons />
       </SlideInMenuContainer>
-      <main style={{ 'margin-top': `${mainMarginTop()}px` }}>
+      <main style={{ "margin-top": `${mainMarginTop()}px` }}>
         {props.children}
       </main>
       <Footer />

@@ -1,17 +1,29 @@
-import { Component } from 'solid-js';
-import { TitleContainer, Title, Description } from './SectionTitle.styled';
+import { onMount } from "solid-js";
+import { SectionTitleWrapper, Title, Description } from "./SectionTitle.styled";
 
-const SectionTitle: Component<{
+const SectionTitle = (props: {
+  id: string;
   title: string;
-  description?: string;
-  align?: 'left' | 'center';
-  id?: string;
-}> = (props) => {
+  description: string;
+  align?: "left" | "center";
+}) => {
+  let titleRef: HTMLDivElement | undefined;
+
+  onMount(() => {
+    if (titleRef) {
+      const height = titleRef.offsetHeight;
+      document.documentElement.style.setProperty(
+        "--section-title-height",
+        `${height}px`
+      );
+    }
+  });
+
   return (
-    <TitleContainer id={props.id} align={props.align}>
-      <Title>{props.title}</Title>
-      {props.description && <Description>{props.description}</Description>}
-    </TitleContainer>
+    <SectionTitleWrapper ref={titleRef} align={props.align}>
+      <Title id={props.id}>{props.title}</Title>
+      <Description>{props.description}</Description>
+    </SectionTitleWrapper>
   );
 };
 

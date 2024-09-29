@@ -1,9 +1,18 @@
-import { styled } from 'solid-styled-components';
+import { styled } from "solid-styled-components";
 
 export const FeedContainer = styled.section`
   display: flex;
-  margin: 0 auto;
-  padding: 20px;
+  margin: 0 auto 8rem auto;
+  padding: 4rem 0 0 0;
+`;
+
+export const FeedInner = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
 `;
 
 export const FeedMainVisual = styled.div`
@@ -27,38 +36,48 @@ export const FeedMainVisual = styled.div`
   );
   background-size: 200% 200%;
   animation: gradientAnimation 5s ease infinite;
-  border-radius: 8px 0 0 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 20px;
-  text-align: left;
-  margin-right: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  color: #fff;
+
+  @media (min-width: 768px) {
+    border-radius: 8px 0 0 8px;
+    margin-right: 20px;
+    padding: 2rem;
+    margin-bottom: 0;
+  }
 
   h2 {
-    font-size: 5rem;
-    color: #fff;
-    margin: 0;
+    font-size: 3rem;
+
+    @media (min-width: 768px) {
+      font-size: 5rem;
+    }
   }
 
   p {
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: #fff;
-    margin: 0;
+    font-size: 1.2rem;
+
+    @media (min-width: 768px) {
+      font-size: 1.4rem;
+    }
   }
 `;
 
-export const FeedInner = styled.div`
-  display: flex;
+export const NoteLogo = styled.img`
+  height: 1em;
+  vertical-align: bottom;
 `;
 
 export const FeedList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    width: 50%;
+  }
 `;
 
 export const FeedItem = styled.div`
@@ -72,20 +91,23 @@ export const FeedItem = styled.div`
   &:hover {
     transform: translateY(-5px);
   }
+
+  flex-direction: row; // 常に横並びにする
 `;
 
 export const FeedContent = styled.div`
   flex: 1;
-  padding: 20px;
-  display: flex;
+  padding: 1rem;
+  display: flex
   flex-direction: column;
+  justify-content: center; // 垂直方向の中央揃え
 `;
 
 export const FeedThumbnail = styled.img`
-  width: 160px;
-  height: auto;
+  width: 120px; // 固定幅に設定
+  height: 120px; // 固定高さに設定
+  object-fit: cover;
   margin-right: 20px;
-  border-radius: 5px;
 `;
 
 export const FeedTitle = styled.a`
@@ -109,7 +131,7 @@ export const FeedDate = styled.p`
 
 export const MoreButton = styled.a`
   display: inline-block;
-  margin-top: 20px;
+  margin-top: 1rem;
   padding: 10px 20px;
   background-color: #0066cc;
   color: #fff;

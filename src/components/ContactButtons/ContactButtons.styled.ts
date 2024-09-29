@@ -1,4 +1,4 @@
-import { styled } from 'solid-styled-components';
+import { styled } from "solid-styled-components";
 
 export const ContactButtonsContainer = styled.div`
   display: none; /* 768px以下で非表示 */
@@ -17,7 +17,7 @@ export const ContactButtonsContainer = styled.div`
 export const MobileContactButtonsContainer = styled.div`
   display: none;
 
-  @media (max-width: 1200px) {
+  @media (min-width: 1200px) {
     display: flex;
     flex-direction: column;
     gap: 1rem;

@@ -1,6 +1,6 @@
-import { styled } from 'solid-styled-components';
+import { styled } from "solid-styled-components";
 
-export const HeaderContainer = styled('header')<{
+export const HeaderContainer = styled("header")<{
   isVisible: boolean;
   isExpanded: boolean;
 }>`
@@ -12,10 +12,10 @@ export const HeaderContainer = styled('header')<{
   width: 100%;
   z-index: 1000;
   transition: transform 0.3s ease-in-out, height 0.3s ease-in-out;
-  transform: translateY(${(props) => (props.isVisible ? '0' : '-150%')});
+  transform: translateY(${(props) => (props.isVisible ? "0" : "-150%")});
 `;
 
-export const HeaderTopRow = styled('div')`
+export const HeaderTopRow = styled("div")`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -23,7 +23,7 @@ export const HeaderTopRow = styled('div')`
   position: relative; /* 追加 */
 `;
 
-export const LogoWrapper = styled('div')`
+export const LogoWrapper = styled("div")`
   display: flex;
   align-items: center;
 
@@ -40,7 +40,7 @@ export const LogoWrapper = styled('div')`
   }
 `;
 
-export const CompanyName = styled('h1')`
+export const CompanyName = styled("h1")`
   font-size: 1.5rem;
   font-weight: bold;
   color: var(--primary-color);
@@ -50,23 +50,23 @@ export const CompanyName = styled('h1')`
   }
 `;
 
-export const HeaderRight = styled('div')`
+export const HeaderRight = styled("div")`
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
   gap: 1rem;
 `;
 
-export const HeaderBottomRow = styled('div')`
+export const HeaderBottomRow = styled("div")`
   border-top: 1px solid #e0e0e0;
 `;
 
-export const HeaderExpanded = styled('div')<{ isActive: boolean }>`
+export const HeaderExpanded = styled("div")<{ isActive: boolean }>`
   display: none;
   background-color: #f5f5f5;
 
   @media (min-width: 1200px) {
-    display: ${(props) => (props.isActive ? 'block' : 'none')};
+    display: ${(props) => (props.isActive ? "block" : "none")};
   }
 `;
 
@@ -84,9 +84,9 @@ interface NavLinksOpenProps {
   isOpen: boolean;
 }
 
-export const NavLinksOpen = styled('nav')<NavLinksOpenProps>`
+export const NavLinksOpen = styled("nav")<NavLinksOpenProps>`
   @media (max-width: 1200px) {
-    display: ${(props) => (props.isOpen ? 'flex' : 'none')};
+    display: ${(props) => (props.isOpen ? "flex" : "none")};
     flex-direction: column;
     position: absolute;
     top: 100%;
@@ -97,11 +97,11 @@ export const NavLinksOpen = styled('nav')<NavLinksOpenProps>`
   }
 `;
 
-export const NavItem = styled('li')`
+export const NavItem = styled("li")`
   list-style: none;
 `;
 
-export const NavButton = styled('button')<{ isActive: boolean }>`
+export const NavButton = styled("button")<{ isActive: boolean }>`
   display: flex;
   align-items: center;
   gap: 8px;
@@ -109,8 +109,8 @@ export const NavButton = styled('button')<{ isActive: boolean }>`
   border: none;
   cursor: pointer;
   padding: 10px;
-  color: ${(props) => (props.isActive ? '#0080ff' : 'white')};
-  font-weight: ${(props) => (props.isActive ? 'bold' : 'normal')};
+  color: ${(props) => (props.isActive ? "#0080ff" : "white")};
+  font-weight: ${(props) => (props.isActive ? "bold" : "normal")};
 
   &:hover {
     color: #0080ff;
@@ -123,7 +123,7 @@ export const MobileNavContainer = styled.div`
   width: 100%;
 `;
 
-export const SlideInMenuContainer = styled('div')<{ isOpen: boolean }>`
+export const SlideInMenuContainer = styled("div")<{ isOpen: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
@@ -132,7 +132,7 @@ export const SlideInMenuContainer = styled('div')<{ isOpen: boolean }>`
   background-color: #fff;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
   transform: ${(props) =>
-    props.isOpen ? 'translateX(0)' : 'translateX(100%)'};
+    props.isOpen ? "translateX(0)" : "translateX(100%)"};
   transition: transform 0.3s ease;
   z-index: 1000;
   display: flex;
@@ -141,13 +141,13 @@ export const SlideInMenuContainer = styled('div')<{ isOpen: boolean }>`
   box-sizing: border-box;
 `;
 
-export const SlideInMenuOverlay = styled('div')<{ isOpen: boolean }>`
+export const SlideInMenuOverlay = styled("div")<{ isOpen: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
   opacity: ${(props) => (props.isOpen ? 1 : 0)};
-  visibility: ${(props) => (props.isOpen ? 'visible' : 'hidden')};
+  visibility: ${(props) => (props.isOpen ? "visible" : "hidden")};
   transition: opacity 0.3s ease, visibility 0.3s ease;
   z-index: 999;
 `;

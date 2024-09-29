@@ -1,6 +1,6 @@
-import { createResource, For } from 'solid-js';
-import { fetchNoteRssFeed } from '../../../../utils/rssUtils';
-import Container from '../../../../components/Container/Container';
+import { createResource, For } from "solid-js";
+import { fetchNoteRssFeed } from "../../../../utils/rssUtils";
+import Container from "../../../../components/Container/Container";
 import {
   FeedContainer,
   FeedMainVisual,
@@ -12,7 +12,8 @@ import {
   FeedDate,
   FeedThumbnail,
   MoreButton,
-} from './NoteRssFeed.styled';
+  NoteLogo,
+} from "./NoteRssFeed.styled";
 
 export default function NoteRssFeed() {
   const [feed] = createResource(() => fetchNoteRssFeed());
@@ -24,7 +25,10 @@ export default function NoteRssFeed() {
           <FeedMainVisual>
             <p>橋爪商事のオウンドメディア</p>
             <h2>橋爪倶楽部</h2>
-            <p>noteで情報を発信しています</p>
+            <p>
+              <NoteLogo src="/images/note-logo.svg" alt="note" />
+              で情報を発信しています
+            </p>
           </FeedMainVisual>
           <FeedList>
             <For each={feed()?.slice(0, 3)} fallback={<p>読み込み中...</p>}>
@@ -40,7 +44,7 @@ export default function NoteRssFeed() {
                       {item.title}
                     </FeedTitle>
                     <FeedDate>
-                      {new Date(item.pubDate).toLocaleDateString('ja-JP')}
+                      {new Date(item.pubDate).toLocaleDateString("ja-JP")}
                     </FeedDate>
                   </FeedContent>
                 </FeedItem>

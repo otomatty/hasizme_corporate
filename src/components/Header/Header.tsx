@@ -1,22 +1,21 @@
-import { onCleanup, onMount, createSignal, Show } from 'solid-js';
-import { useScrollLogic } from '../../utils/scrollLogic';
+import { onCleanup, onMount, createSignal, Show } from "solid-js";
+import { useScrollLogic } from "../../utils/scrollLogic";
 import {
   HeaderContainer,
   HeaderTopRow,
-  HeaderBottomRow,
   LogoWrapper,
   CompanyName,
   HeaderExpanded,
   NavLinksOpen,
   HeaderRight,
-} from './Header.styled';
-import Navbar from '../Navbar/Navbar';
-import MegaMenu from '../MegaMenu/MegaMenu';
-import Container from '../Container/Container';
-import { A } from '@solidjs/router';
-import { menuItems } from '../../data/menuItemsData';
-import { ContactButtons } from '../ContactButtons/ContactButtons';
-import HamburgerButton from '../HamburgerButton/HamburgerButton';
+} from "./Header.styled";
+import Navbar from "../Navbar/Navbar";
+import MegaMenu from "../MegaMenu/MegaMenu";
+import Container from "../Container/Container";
+import { A } from "@solidjs/router";
+import { menuItems } from "../../data/menuItemsData";
+import { ContactButtons } from "../ContactButtons/ContactButtons";
+import HamburgerButton from "../HamburgerButton/HamburgerButton";
 
 interface HeaderProps {
   setHeaderHeight: (height: number) => void;
@@ -43,13 +42,13 @@ const Header = (props: HeaderProps) => {
   };
 
   onMount(() => {
-    window.addEventListener('scroll', controlScroll);
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("scroll", controlScroll);
+    window.addEventListener("resize", handleResize);
   });
 
   onCleanup(() => {
-    window.removeEventListener('scroll', controlScroll);
-    window.removeEventListener('resize', handleResize);
+    window.removeEventListener("scroll", controlScroll);
+    window.removeEventListener("resize", handleResize);
   });
 
   return (
@@ -66,19 +65,6 @@ const Header = (props: HeaderProps) => {
               <CompanyName>橋爪商事株式会社</CompanyName>
             </A>
           </LogoWrapper>
-          <HeaderRight>
-            <Show when={!isMobile()}>
-              <ContactButtons />
-            </Show>
-            <Show when={isMobile()}>
-              <ContactButtons />
-              <HamburgerButton onClick={props.toggleMenu} />
-            </Show>
-          </HeaderRight>
-        </HeaderTopRow>
-      </Container>
-      <Show when={!isMobile()}>
-        <HeaderBottomRow>
           <NavLinksOpen isOpen={false}>
             <Navbar
               menuItems={menuItems}
@@ -87,13 +73,27 @@ const Header = (props: HeaderProps) => {
               isMobile={isMobile}
             />
           </NavLinksOpen>
-        </HeaderBottomRow>
+          <HeaderRight>
+            <Show when={!isMobile()}>
+              <ContactButtons />
+            </Show>
+
+            <Show when={isMobile()}>
+              <ContactButtons />
+              <HamburgerButton onClick={props.toggleMenu} />
+            </Show>
+          </HeaderRight>
+        </HeaderTopRow>
+      </Container>
+      <Show when={!isMobile()}>
         <HeaderExpanded isActive={activeMenu() !== null}>
-          <MegaMenu
-            activeMenu={activeMenu()}
-            menuItems={menuItems}
-            closeMegaMenu={closeMegaMenu}
-          />
+          <Container>
+            <MegaMenu
+              activeMenu={activeMenu()}
+              menuItems={menuItems}
+              closeMegaMenu={closeMegaMenu}
+            />
+          </Container>
         </HeaderExpanded>
       </Show>
     </HeaderContainer>
