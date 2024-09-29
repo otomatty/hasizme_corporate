@@ -4,7 +4,7 @@ import { SectionTitleWrapper, Title, Description } from "./SectionTitle.styled";
 const SectionTitle = (props: {
   id: string;
   title: string;
-  description: string;
+  description?: string;
   align?: "left" | "center";
 }) => {
   let titleRef: HTMLDivElement | undefined;
