@@ -1,65 +1,64 @@
-import { createResource, For, Show } from 'solid-js';
-import { useParams, A } from '@solidjs/router';
-import { fetchBlogPostsByTag } from '../../newt/newtClient';
-import {
-  BlogContainer,
-  BlogList,
-  BlogItem,
-  BlogImage,
-  BlogTitle,
-  BlogMeta,
-  BlogTags,
-  Tag,
-} from '../Blog/Blog.styled';
+// import { createResource, For, Show } from 'solid-js';
+// import { useParams, A } from '@solidjs/router';
+// import { fetchBlogPostsByTag } from '../../newt/newtClient';
+// import {
+//   BlogContainer,
+//   BlogList,
+//   BlogItem,
+//   BlogImage,
+//   BlogTitle,
+//   BlogMeta,
 
-const DEFAULT_IMAGE_PATH = '/logo.svg';
+// } from '../Blog/Blog.styled';
 
-export default function CategoryPosts() {
-  const params = useParams();
-  const [posts] = createResource(() => fetchBlogPostsByTag(params.slug));
+// const DEFAULT_IMAGE_PATH = '/logo.svg';
 
-  return (
-    <BlogContainer>
-      <h1>{decodeURIComponent(params.slug)} の記事一覧</h1>
-      <Show when={!posts.loading} fallback={<p>読み込み中...</p>}>
-        <Show
-          when={!posts.error}
-          fallback={<p>エラーが発生しました。再試行してください。</p>}
-        >
-          <BlogList>
-            <For each={posts()} fallback={<p>読み込み中...</p>}>
-              {(post) => (
-                <BlogItem>
-                  <A href={`/blog/${post.slug}`}>
-                    <BlogImage
-                      src={post.coverImage?.src || DEFAULT_IMAGE_PATH}
-                      alt={post.coverImage?.altText || post.title}
-                      isDefault={!post.coverImage}
-                    />
-                    <BlogTitle>{post.title}</BlogTitle>
-                  </A>
-                  <BlogMeta>
-                    {new Date(post._sys.updatedAt).toLocaleDateString('ja-JP')}
-                  </BlogMeta>
-                  {post.tags && (
-                    <BlogTags>
-                      {post.tags.map((tag) => (
-                        <Tag
-                          style={{
-                            'background-color': tag.tagColor || '#f0f0f0',
-                          }}
-                        >
-                          <A href={`/category/${tag.slug}`}>{tag.name}</A>
-                        </Tag>
-                      ))}
-                    </BlogTags>
-                  )}
-                </BlogItem>
-              )}
-            </For>
-          </BlogList>
-        </Show>
-      </Show>
-    </BlogContainer>
-  );
-}
+// export default function CategoryPosts() {
+//   const params = useParams();
+//   const [posts] = createResource(() => fetchBlogPostsByTag(params.slug));
+
+//   return (
+//     <BlogContainer>
+//       <h1>{decodeURIComponent(params.slug)} の記事一覧</h1>
+//       <Show when={!posts.loading} fallback={<p>読み込み中...</p>}>
+//         <Show
+//           when={!posts.error}
+//           fallback={<p>エラーが発生しました。再試行してください。</p>}
+//         >
+//           <BlogList>
+//             <For each={posts()} fallback={<p>読み込み中...</p>}>
+//               {(post) => (
+//                 <BlogItem>
+//                   <A href={`/blog/${post.slug}`}>
+//                     <BlogImage
+//                       src={post.coverImage?.src || DEFAULT_IMAGE_PATH}
+//                       alt={post.coverImage?.altText || post.title}
+//                       isDefault={!post.coverImage}
+//                     />
+//                     <BlogTitle>{post.title}</BlogTitle>
+//                   </A>
+//                   <BlogMeta>
+//                     {new Date(post._sys.updatedAt).toLocaleDateString('ja-JP')}
+//                   </BlogMeta>
+//                   {post.tags && (
+//                     <BlogTags>
+//                       {post.tags.map((tag) => (
+//                         <Tag
+//                           style={{
+//                             'background-color': tag.tagColor || '#f0f0f0',
+//                           }}
+//                         >
+//                           <A href={`/category/${tag.slug}`}>{tag.name}</A>
+//                         </Tag>
+//                       ))}
+//                     </BlogTags>
+//                   )}
+//                 </BlogItem>
+//               )}
+//             </For>
+//           </BlogList>
+//         </Show>
+//       </Show>
+//     </BlogContainer>
+//   );
+// }

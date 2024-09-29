@@ -1,62 +1,59 @@
-import { createResource, For } from 'solid-js';
-import { A } from '@solidjs/router';
-import { fetchBlogPosts } from '../../newt/newtClient';
-import type { BlogPost } from '../../types/blog';
-import Hero from '../../components/Hero/Hero';
-import Container from '../../components/Container/Container';
+import { createResource, For } from "solid-js";
+import { fetchNoteRssFeed } from "../../utils/rssUtils";
+import Hero from "../../components/Hero/Hero";
+import Container from "../../components/Container/Container";
 import {
+  BlogContainer,
   BlogList,
   BlogItem,
   BlogImage,
   BlogTitle,
   BlogMeta,
-  BlogTags,
-  Tag,
-} from './Blog.styled';
+  // BlogExcerpt,
+  ReadMoreLink,
+} from "./Blog.styled";
 
-// デフォルト画像のパスを指定
-const DEFAULT_IMAGE_PATH = '/logo.svg';
+const DEFAULT_IMAGE_PATH = "/logo.svg";
 
 export default function Blog() {
-  const [posts] = createResource<BlogPost[]>(() => fetchBlogPosts());
+  const [feed] = createResource(() => fetchNoteRssFeed());
 
   return (
     <>
-      <Hero title="橋爪俱楽部" />
-      <Container>
-        <BlogList>
-          <For each={posts()} fallback={<p>読み込み中...</p>}>
-            {(post) => (
-              <BlogItem>
-                <A href={`/blog/${post.slug}`}>
+      <Hero title="橋爪倶楽部" />
+      <BlogContainer>
+        <Container>
+          <BlogList>
+            <For each={feed()} fallback={<p>記事を読み込んでいます...</p>}>
+              {(item) => (
+                <BlogItem>
                   <BlogImage
-                    src={post.coverImage?.src || DEFAULT_IMAGE_PATH}
-                    alt={post.coverImage?.altText || post.title}
-                    isDefault={!post.coverImage}
+                    src={item.thumbnail || DEFAULT_IMAGE_PATH}
+                    alt={item.title}
+                    isDefault={!item.thumbnail}
                   />
-                  <BlogTitle>{post.title}</BlogTitle>
-                </A>
-                <BlogMeta>
-                  {new Date(post._sys.updatedAt).toLocaleDateString('ja-JP')}
-                </BlogMeta>
-                {post.tags && (
-                  <BlogTags>
-                    {post.tags.map((tag) => (
-                      <Tag
-                        style={{
-                          'background-color': tag.tagColor || '#f0f0f0',
-                        }}
-                      >
-                        {tag.name}
-                      </Tag>
-                    ))}
-                  </BlogTags>
-                )}
-              </BlogItem>
-            )}
-          </For>
-        </BlogList>
-      </Container>
+                  <BlogTitle>{item.title}</BlogTitle>
+                  <BlogMeta>
+                    公開日: {new Date(item.pubDate).toLocaleDateString("ja-JP")}
+                  </BlogMeta>
+                  {/* <BlogExcerpt>
+                    {item.description
+                      ? item.description.slice(0, 100) + "..."
+                      : "記事の詳細はリンク先でご覧ください。"}
+                  </BlogExcerpt> */}
+                  <ReadMoreLink
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    続きを読む
+                  </ReadMoreLink>
+                </BlogItem>
+              )}
+            </For>
+          </BlogList>
+        </Container>
+      </BlogContainer>
     </>
   );
 }
