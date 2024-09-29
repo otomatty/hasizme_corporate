@@ -4,7 +4,7 @@ interface RssItem {
 	title: string;
 	link: string;
 	pubDate: string;
-	'content:encoded'?: string; // オプショナルに変更
+	'media:thumbnail'?: string;
 }
 
 export interface Env {
@@ -38,7 +38,7 @@ export default {
 				title: item.title,
 				link: item.link,
 				pubDate: item.pubDate,
-				thumbnail: extractThumbnail(item['content:encoded']),
+				thumbnail: item['media:thumbnail'] || '',
 			}));
 
 			return new Response(JSON.stringify(parsedItems), {
