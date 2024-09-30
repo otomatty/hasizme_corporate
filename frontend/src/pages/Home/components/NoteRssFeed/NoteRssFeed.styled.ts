@@ -2,8 +2,13 @@ import { styled } from "solid-styled-components";
 
 export const FeedContainer = styled.section`
   display: flex;
-  margin: 0 auto 8rem auto;
-  padding: 8rem 0 0 0;
+  margin: 0 auto 4rem auto;
+  padding: 2rem 0 0 0;
+
+  @media (min-width: 768px) {
+    padding: 8rem 0 0 0;
+    margin-bottom: 10rem;
+  }
 `;
 
 export const FeedInner = styled.div`
@@ -92,7 +97,7 @@ export const FeedItem = styled.div`
     transform: translateY(-5px);
   }
 
-  flex-direction: row; // 常に横並びにする
+  flex-direction: row;
 `;
 
 export const FeedContent = styled.div`
@@ -100,12 +105,12 @@ export const FeedContent = styled.div`
   padding: 1rem;
   display: flex
   flex-direction: column;
-  justify-content: center; // 垂直方向の中央揃え
+  justify-content: center; 
 `;
 
 export const FeedThumbnail = styled.img`
-  width: 120px; // 固定幅に設定
-  height: 120px; // 固定高さに設定
+  width: 120px;
+  height: 120px;
   object-fit: cover;
   margin-right: 20px;
 `;

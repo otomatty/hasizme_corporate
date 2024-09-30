@@ -3,7 +3,6 @@ import { services } from "../../../../data/servicesData";
 import Container from "../../../../components/Container/Container";
 import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
 import { useScrollLogic } from "../../../../utils/scrollLogic";
-import Button from "../../../../components/Button/Button";
 import {
   ServicesContainer,
   ServicesWrapper,
@@ -20,8 +19,9 @@ import {
   Slide,
   IndicatorContainer,
   IndicatorDot,
-  ModalOverlay,
-  ModalContent,
+  HalfModalOverlay,
+  HalfModalContent,
+  CloseButton,
 } from "./ServicesSection.styled";
 
 type ServiceType = (typeof services)[0];
@@ -177,8 +177,11 @@ function ServicesSection() {
           </ServicesContentWrapper>
         </ServicesWrapper>
       </Container>
-      <ModalOverlay isOpen={isModalOpen()}>
-        <ModalContent>
+      <HalfModalOverlay
+        isOpen={isModalOpen()}
+        onClick={() => setIsModalOpen(false)}
+      >
+        <HalfModalContent onClick={(e) => e.stopPropagation()}>
           {selectedService() && (
             <>
               <ServiceDescriptionTitle>
@@ -187,11 +190,13 @@ function ServicesSection() {
               <ServiceDescriptionText>
                 {selectedService()?.description}
               </ServiceDescriptionText>
-              <Button onClick={() => setIsModalOpen(false)}>閉じる</Button>
+              <CloseButton onClick={() => setIsModalOpen(false)}>
+                &times;
+              </CloseButton>
             </>
           )}
-        </ModalContent>
-      </ModalOverlay>
+        </HalfModalContent>
+      </HalfModalOverlay>
     </ServicesContainer>
   );
 }

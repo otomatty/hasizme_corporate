@@ -9,6 +9,7 @@ export const StyledHamburgerButton = styled("button")`
   border: none;
   cursor: pointer;
   padding: 10px;
+  color: var(--primary-color);
 
   @media (min-width: 375px) {
     width: 6rem;

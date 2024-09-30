@@ -179,28 +179,60 @@ export const IndicatorDot = styled("div")<{ active: boolean }>`
   transition: background-color 0.3s;
 `;
 
-export const ModalOverlay = styled("div")<{ isOpen: boolean }>`
-  display: ${({ isOpen }) => (isOpen ? "block" : "none")};
+export const HalfModalOverlay = styled("div")<{ isOpen: boolean }>`
   position: fixed;
-  top: 0;
+  bottom: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1000;
+  display: ${(props) => (props.isOpen ? "flex" : "none")};
+  justify-content: center;
+  align-items: flex-end;
+`;
+
+export const HalfModalContent = styled("div")`
+  background-color: #fff;
+  padding: 1.5rem;
+  width: 100%;
+  max-height: 80vh;
+  border-radius: 20px 20px 0 0;
+  overflow-y: auto;
+  position: relative;
+  animation: slideUp 0.3s ease-out;
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+`;
+
+export const CloseButton = styled("button")`
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--primary-color);
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+
+// 既存のModalOverlayとModalContentを削除または非表示に
+export const ModalOverlay = styled("div")`
+  display: none;
 `;
 
 export const ModalContent = styled("div")`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-  padding: 1rem;
-  box-sizing: border-box;
-  border-radius: 8px;
-  width: 90%;
-  height: 90%;
-  overflow-y: auto;
-  z-index: 1001;
+  display: none;
 `;

@@ -147,6 +147,7 @@ export const CloseButton = styled("button")`
   cursor: pointer;
   color: var(--primary-color);
   transition: transform 0.3s ease;
+  z-index: 1;
 
   &:hover {
     transform: scale(1.1);
@@ -172,30 +173,43 @@ export const MobileTitle = styled("h3")`
   font-size: 1.2rem;
 `;
 
-export const ModalOverlay = styled("div")`
-  text-align: left;
-  display: none;
+export const HalfModalOverlay = styled("div")`
   position: fixed;
-  top: 0;
+  bottom: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1000;
+  display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
+`;
 
-  @media (max-width: 767px) {
-    display: flex;
+export const HalfModalContent = styled("div")`
+  background-color: #fff;
+  padding: 1.5rem;
+  width: 100%;
+  max-height: 80vh;
+  border-radius: 20px 20px 0 0;
+  overflow-y: auto;
+  position: relative;
+  animation: slideUp 0.3s ease-out;
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
   }
 `;
 
+export const ModalOverlay = styled("div")`
+  display: none;
+`;
+
 export const ModalContent = styled("div")`
-  background-color: #fff;
-  padding: 3rem 1rem 1rem 1rem;
-  height: 96vh;
-  margin: 1rem;
-  box-sizing: border-box;
-  border-radius: 8px;
-  overflow-y: auto;
+  display: none;
 `;

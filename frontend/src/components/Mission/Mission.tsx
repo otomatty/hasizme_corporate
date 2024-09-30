@@ -17,8 +17,8 @@ import {
   MobileItemWrapper,
   MobileItem,
   MobileTitle,
-  ModalOverlay,
-  ModalContent,
+  HalfModalOverlay,
+  HalfModalContent,
 } from "./Mission.styled";
 import {
   FaSolidChevronDown,
@@ -163,8 +163,8 @@ function Mission() {
         </MissionContentWrapper>
       </Show>
       <Show when={!isDesktop() && openMission()}>
-        <ModalOverlay onClick={() => setOpenMission(null)}>
-          <ModalContent onClick={(e) => e.stopPropagation()}>
+        <HalfModalOverlay onClick={() => setOpenMission(null)}>
+          <HalfModalContent onClick={(e) => e.stopPropagation()}>
             <MissionContentTitle>
               <MissionIcon>{getMissionIcon(openMission()!)}</MissionIcon>
               <For each={openMission()!}>
@@ -183,8 +183,8 @@ function Mission() {
             <CloseButton onClick={() => setOpenMission(null)}>
               &times;
             </CloseButton>
-          </ModalContent>
-        </ModalOverlay>
+          </HalfModalContent>
+        </HalfModalOverlay>
       </Show>
     </>
   );

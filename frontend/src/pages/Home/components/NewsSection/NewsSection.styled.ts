@@ -2,8 +2,11 @@ import { styled } from "solid-styled-components";
 
 export const NewsContainer = styled.section`
   padding: 0 1rem 2rem 1rem;
-  margin: 0 auto 4rem auto;
+  margin: 0 auto 2rem auto;
   box-sizing: border-box;
+  @media (min-width: 768px) {
+    margin-bottom: 4rem;
+  }
   @media (min-width: 1024px) {
     gap: 2rem;
   }
@@ -25,6 +28,8 @@ export const NewsContent = styled.div`
 export const NewsList = styled.ul`
   flex: 2;
   height: 100%;
+  margin: 0;
+  padding: 0;
 `;
 
 export const NewsItem = styled.li`
