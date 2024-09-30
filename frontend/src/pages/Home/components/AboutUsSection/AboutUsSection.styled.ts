@@ -1,11 +1,11 @@
-import { styled } from 'solid-styled-components';
+import { styled } from "solid-styled-components";
 
-export const AboutUsContainer = styled('section')`
+export const AboutUsContainer = styled("section")`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 4rem;
+  margin-bottom: 10rem;
   padding: 1rem;
   position: relative;
 
@@ -14,7 +14,7 @@ export const AboutUsContainer = styled('section')`
   }
 `;
 
-export const AboutUsImage = styled('img')`
+export const AboutUsImage = styled("img")`
   width: 100%;
   height: auto;
   border-radius: 8px;
@@ -28,7 +28,7 @@ export const AboutUsImage = styled('img')`
   }
 `;
 
-export const AboutUsContent = styled('div')`
+export const AboutUsContent = styled("div")`
   background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -49,7 +49,7 @@ export const AboutUsContent = styled('div')`
   }
 `;
 
-export const AboutUsSectionContent = styled('p')`
+export const AboutUsSectionContent = styled("p")`
   font-size: 1.125rem;
   color: #666;
   line-height: 1.8;

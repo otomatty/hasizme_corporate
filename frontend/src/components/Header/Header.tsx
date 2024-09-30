@@ -36,6 +36,11 @@ const Header = (props: HeaderProps) => {
   const [isMobile, setIsMobile] = createSignal(window.innerWidth <= 1200);
 
   const closeMegaMenu = () => setActiveMenu(null);
+  const keepMegaMenuOpen = () => {
+    if (activeMenu()) {
+      setActiveMenu(activeMenu());
+    }
+  };
 
   const handleResize = () => {
     setIsMobile(window.innerWidth <= 1200);
@@ -71,6 +76,7 @@ const Header = (props: HeaderProps) => {
               activeMenu={activeMenu}
               setActiveMenu={setActiveMenu}
               isMobile={isMobile}
+              keepMegaMenuOpen={keepMegaMenuOpen}
             />
           </NavLinksOpen>
           <HeaderRight>
@@ -92,6 +98,7 @@ const Header = (props: HeaderProps) => {
               activeMenu={activeMenu()}
               menuItems={menuItems}
               closeMegaMenu={closeMegaMenu}
+              keepMegaMenuOpen={keepMegaMenuOpen}
             />
           </Container>
         </HeaderExpanded>

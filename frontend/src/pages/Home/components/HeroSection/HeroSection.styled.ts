@@ -1,8 +1,9 @@
-import { styled } from 'solid-styled-components';
+import { styled } from "solid-styled-components";
 
-export const HeroContainer = styled('section')`
+export const HeroContainer = styled("section")`
   text-align: center;
   padding: 0.5rem;
+  min-height: 80vh;
 
   @media (min-width: 768px) {
     padding: 1rem;
@@ -10,7 +11,7 @@ export const HeroContainer = styled('section')`
   }
 `;
 
-export const MissionContainer = styled('div')`
+export const MissionContainer = styled("div")`
   display: flex;
   justify-content: space-around;
   margin-top: 1.5rem;
@@ -21,7 +22,7 @@ export const MissionContainer = styled('div')`
   }
 `;
 
-export const MissionItem = styled('div')`
+export const MissionItem = styled("div")`
   flex: 1;
   margin: 0 1rem;
   cursor: pointer;
@@ -41,7 +42,7 @@ export const MissionItem = styled('div')`
   }
 `;
 
-export const MissionTitle = styled('div')`
+export const MissionTitle = styled("div")`
   font-size: 1.5rem;
   color: #333;
 `;
@@ -50,8 +51,8 @@ interface MissionContentProps {
   isOpen: boolean;
 }
 
-export const MissionContent = styled('div')<MissionContentProps>`
-  max-height: ${({ isOpen }) => (isOpen ? '200px' : '0')};
+export const MissionContent = styled("div")<MissionContentProps>`
+  max-height: ${({ isOpen }) => (isOpen ? "200px" : "0")};
   overflow: hidden;
   transition: max-height 0.3s ease;
   font-size: 1rem;

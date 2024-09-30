@@ -114,19 +114,19 @@ function ServicesSection() {
             "padding-top":
               isAtTop() && isDesktop()
                 ? isScrollingDown()
-                  ? "2rem"
+                  ? "3rem"
                   : "6rem"
-                : "2rem",
+                : "3rem",
           }}
         >
           <SectionTitle
             id="services-title"
             title="取扱商品"
-            description="当社が提供する多様なサービスをご覧ください。"
+            description="お客様のご要望にお応えするため、さまざまな商品をご用意しております。"
           />
           <ServicesContentWrapper
             style={{
-              height: `calc(100% - 10rem - ${sectionTitleHeight()}px)`,
+              height: `calc(100% - 8rem - ${sectionTitleHeight()}px)`,
             }}
           >
             <ServicesList>

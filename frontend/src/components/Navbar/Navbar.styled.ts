@@ -1,7 +1,9 @@
 import { styled } from "solid-styled-components";
 
-export const NavbarContainer = styled("nav")`
+export const NavbarContainer = styled("ul")`
   display: flex;
+  margin: 0;
+  padding: 0;
   justify-content: center;
   @media (max-width: 1200px) {
     flex-direction: column;
@@ -10,7 +12,7 @@ export const NavbarContainer = styled("nav")`
   }
 `;
 
-export const NavItem = styled("div")`
+export const NavItem = styled("li")`
   position: relative;
   display: flex;
   align-items: center;
@@ -33,7 +35,7 @@ export const NavButton = styled("button")<{ isActive: boolean }>`
   border: none;
   cursor: pointer;
   font-size: 1rem;
-  padding: 1rem;
+  padding: 1.5rem 1rem;
   color: ${(props) => (props.isActive ? "var(--primary-color)" : "inherit")};
   transition: color 0.3s ease, transform 0.3s ease;
   display: flex;

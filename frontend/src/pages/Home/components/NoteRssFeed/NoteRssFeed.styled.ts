@@ -3,7 +3,7 @@ import { styled } from "solid-styled-components";
 export const FeedContainer = styled.section`
   display: flex;
   margin: 0 auto 8rem auto;
-  padding: 4rem 0 0 0;
+  padding: 8rem 0 0 0;
 `;
 
 export const FeedInner = styled.div`
@@ -49,7 +49,7 @@ export const FeedMainVisual = styled.div`
 
   h2 {
     font-size: 3rem;
-
+    margin: 0;
     @media (min-width: 768px) {
       font-size: 5rem;
     }

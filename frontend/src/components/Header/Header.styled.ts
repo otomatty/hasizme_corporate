@@ -19,13 +19,13 @@ export const HeaderTopRow = styled("div")`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 0;
   position: relative; /* 追加 */
 `;
 
 export const LogoWrapper = styled("div")`
   display: flex;
   align-items: center;
+  cursor: pointer;
 
   a {
     display: flex;
@@ -36,7 +36,7 @@ export const LogoWrapper = styled("div")`
 
   img {
     height: 40px;
-    margin-right: 1rem;
+    margin-right: 0.5rem;
   }
 `;
 
@@ -44,7 +44,7 @@ export const CompanyName = styled("h1")`
   font-size: 1.5rem;
   font-weight: bold;
   color: var(--primary-color);
-
+  margin: 0.2rem 0 0 0;
   @media (max-width: 768px) {
     font-size: 1.2rem;
   }

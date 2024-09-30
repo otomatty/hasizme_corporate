@@ -20,13 +20,13 @@ export const ServicesContentWrapper = styled("div")`
 export const ServicesWrapper = styled("div")`
   width: 100%;
   position: sticky;
-  top: 0; /* 固定位置を調整 */
-  height: 100vh; /* 高さを100vhに設定 */
+  top: 0;
+  height: 100vh;
   box-sizing: border-box;
-  padding: 4rem 0;
+  padding-bottom: 3rem;
   box-sizing: border-box;
-  overflow-y: hidden; /* 内部スクロールを隠す */
-  transition: padding-top 0.3s ease; /* アニメーションを追加 */
+  overflow-y: hidden;
+  transition: padding-top 0.3s ease;
 `;
 
 export const ServicesList = styled("div")`
@@ -117,7 +117,7 @@ export const Slide = styled("div")`
 `;
 
 export const ServiceDescriptionContainer = styled("div")`
-  margin-left: 1rem;
+  margin-left: 0.5rem;
   flex: 1;
   background-color: #fff;
   border-radius: 8px;
@@ -165,7 +165,7 @@ export const IndicatorContainer = styled("div")`
     flex-direction: column;
     justify-content: center;
     gap: 0.5rem;
-    margin-left: 1rem; /* ServiceDescriptionContainerの横に配置 */
+    margin-left: 1rem;
   }
 `;
 

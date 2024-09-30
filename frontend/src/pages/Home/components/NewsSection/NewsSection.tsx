@@ -1,5 +1,5 @@
-import { createResource, For, Show } from 'solid-js';
-import { A } from '@solidjs/router';
+import { createResource, For, Show } from "solid-js";
+import { A } from "@solidjs/router";
 import {
   NewsContainer,
   NewsContent,
@@ -9,10 +9,10 @@ import {
   NewsDate,
   MoreNewsButton,
   NewsItemDetails,
-} from './NewsSection.styled';
-import { NewsItem as NewsItemType } from '../../../../types/news';
-import { fetchNewsItems } from '../../../../newt/newtClient';
-import SectionTitle from '../../../../components/SectionTitle/SectionTitle';
+} from "./NewsSection.styled";
+import { NewsItem as NewsItemType } from "../../../../types/news";
+import { fetchNewsItems } from "../../../../newt/newtClient";
+import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
 
 function NewsSection() {
   const [news] = createResource<NewsItemType[]>(() => fetchNewsItems(5));
@@ -28,11 +28,11 @@ function NewsSection() {
           <NewsList>
             <For each={news()}>
               {(item) => (
-                <NewsItem as={A} href={`/news/${item.slug}`}>
-                  <NewsItemDetails>
+                <NewsItem>
+                  <NewsItemDetails as={A} href={`/news/${item.slug}`}>
                     <NewsDate>
                       {new Date(item._sys.createdAt).toLocaleDateString(
-                        'ja-JP'
+                        "ja-JP"
                       )}
                     </NewsDate>
                     <NewsItemTitle>{item.newsTitle}</NewsItemTitle>

@@ -1,4 +1,4 @@
-import { styled } from 'solid-styled-components';
+import { styled } from "solid-styled-components";
 
 export const NewsContainer = styled.section`
   padding: 0 1rem 2rem 1rem;
@@ -22,33 +22,34 @@ export const NewsContent = styled.div`
   gap: 2rem;
 `;
 
-export const NewsList = styled.div`
+export const NewsList = styled.ul`
   flex: 2;
   height: 100%;
 `;
 
-export const NewsItem = styled.a`
+export const NewsItem = styled.li`
   display: flex;
   align-items: flex-end;
-  padding: 1rem;
   border-bottom: 1px solid #e0e0e0;
-  transition: background-color 0.3s ease;
-  text-decoration: none;
+
   color: inherit;
 
   &:last-child {
     border-bottom: none;
   }
-
-  &:hover {
-    background-color: #f5f5f5;
-  }
 `;
 
-export const NewsItemDetails = styled.div`
+export const NewsItemDetails = styled.a`
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 1rem;
+  padding: 1rem;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  &:hover {
+    background-color: #f5f5f5;
+  }
 `;
 
 export const NewsDate = styled.p`
@@ -58,9 +59,10 @@ export const NewsDate = styled.p`
 `;
 
 export const NewsItemTitle = styled.h3`
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin: 0;
   color: #333;
+  font-weight: 500;
 `;
 
 export const MoreNewsButton = styled.a`

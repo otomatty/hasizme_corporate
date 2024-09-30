@@ -64,7 +64,7 @@ function OfficesSection() {
         <SectionTitle
           id="offices-title"
           title="営業所・関連企業"
-          description="全国各地に展開する営業所と関連企業をご紹介します。"
+          description="北東北を中心に展開する営業所と関連企業をご紹介します。"
         />
         <OfficesContent>
           <OfficesMapAndDetails>

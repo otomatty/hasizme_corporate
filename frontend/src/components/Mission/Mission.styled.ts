@@ -1,10 +1,10 @@
-import { styled } from 'solid-styled-components';
+import { styled } from "solid-styled-components";
 
-export const MissionContainer = styled('div')`
+export const MissionContainer = styled("div")`
   margin: 4rem 0;
 `;
 
-export const MissionCatchphrase = styled('h2')`
+export const MissionCatchphrase = styled("h2")`
   font-size: 2rem;
 
   color: #333;
@@ -18,7 +18,7 @@ export const MissionCatchphrase = styled('h2')`
   }
 `;
 
-export const MainTitle = styled('h3')`
+export const MainTitle = styled("h3")`
   font-size: 1rem;
   margin-bottom: 1rem;
   text-align: center;
@@ -30,13 +30,13 @@ export const MainTitle = styled('h3')`
   }
 `;
 
-export const MissionItemWrapper = styled('div')`
+export const MissionItemWrapper = styled("div")`
   display: flex;
   justify-content: center;
   gap: 3rem;
 `;
 
-export const MissionItem = styled('div')<{ index: number }>`
+export const MissionItem = styled("div")<{ index: number }>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,7 +44,7 @@ export const MissionItem = styled('div')<{ index: number }>`
   position: relative;
 `;
 
-export const MissionCircle = styled('div')`
+export const MissionCircle = styled("div")`
   width: 10rem;
   height: 10rem;
   border-radius: 50%;
@@ -62,18 +62,17 @@ export const MissionCircle = styled('div')`
   }
 `;
 
-export const MissionTitle = styled('h4')`
+export const MissionTitle = styled("h4")`
   font-size: 1rem;
   text-align: center;
   margin: 0;
   color: white;
-  max-width: 100px;
   transition: transform 0.3s ease;
 `;
 
-export const ChevronWrapper = styled('div')<{ isOpen: boolean }>`
+export const ChevronWrapper = styled("div")<{ isOpen: boolean }>`
   transition: transform 0.3s ease, margin-top 0.3s ease;
-  transform: ${(props) => (props.isOpen ? 'rotate(180deg)' : 'rotate(0)')};
+  transform: ${(props) => (props.isOpen ? "rotate(180deg)" : "rotate(0)")};
   margin-top: 0.5rem;
 
   .mission-circle:hover:hover & {
@@ -81,16 +80,19 @@ export const ChevronWrapper = styled('div')<{ isOpen: boolean }>`
   }
 `;
 
-export const MissionContent = styled('div')<{ isOpen: boolean }>`
-  max-height: ${(props) => (props.isOpen ? '1000px' : '0')};
+export const MissionContent = styled("div")<{ isOpen: boolean }>`
+  max-height: ${(props) => (props.isOpen ? "1000px" : "0")};
+  max-width: 60%;
+  margin: 0 auto;
   overflow: hidden;
   transition: all 0.5s ease-in-out;
-  opacity: ${(props) => (props.isOpen ? '1' : '0')};
+  opacity: ${(props) => (props.isOpen ? "1" : "0")};
   text-align: left;
   background-color: var(--secondary-color);
   border-radius: 8px;
-  padding: ${(props) => (props.isOpen ? '1rem' : '0 1rem')};
+  padding: ${(props) => (props.isOpen ? "1rem" : "0 1rem")};
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
 
   p {
     margin-bottom: 0.5rem;
@@ -110,7 +112,7 @@ export const MissionContent = styled('div')<{ isOpen: boolean }>`
   }
 `;
 
-export const MissionContentTitle = styled('h3')`
+export const MissionContentTitle = styled("h3")`
   font-size: 1.2rem;
   color: var(--primary-color);
   margin-bottom: 1rem;
@@ -118,12 +120,12 @@ export const MissionContentTitle = styled('h3')`
   align-items: center;
 `;
 
-export const MissionIcon = styled('span')`
+export const MissionIcon = styled("span")`
   margin-right: 0.5rem;
   font-size: 1.5rem;
 `;
 
-export const MissionContentText = styled('p')`
+export const MissionContentText = styled("p")`
   font-size: 1rem;
   line-height: 1.6;
   color: var(--text-color);
@@ -131,12 +133,11 @@ export const MissionContentText = styled('p')`
   word-wrap: break-word;
 `;
 
-export const MissionContentWrapper = styled('div')`
-  position: relative;
+export const MissionContentWrapper = styled("div")`
   margin-top: 2rem;
 `;
 
-export const CloseButton = styled('button')`
+export const CloseButton = styled("button")`
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
@@ -152,13 +153,13 @@ export const CloseButton = styled('button')`
   }
 `;
 
-export const MobileItemWrapper = styled('div')`
+export const MobileItemWrapper = styled("div")`
   display: flex;
   flex-direction: column;
   gap: 1rem;
 `;
 
-export const MobileItem = styled('div')`
+export const MobileItem = styled("div")`
   background-color: var(--primary-color);
   color: #fff;
   padding: 1rem;
@@ -166,12 +167,12 @@ export const MobileItem = styled('div')`
   cursor: pointer;
 `;
 
-export const MobileTitle = styled('h3')`
+export const MobileTitle = styled("h3")`
   margin: 0;
   font-size: 1.2rem;
 `;
 
-export const ModalOverlay = styled('div')`
+export const ModalOverlay = styled("div")`
   text-align: left;
   display: none;
   position: fixed;
@@ -189,7 +190,7 @@ export const ModalOverlay = styled('div')`
   }
 `;
 
-export const ModalContent = styled('div')`
+export const ModalContent = styled("div")`
   background-color: #fff;
   padding: 3rem 1rem 1rem 1rem;
   height: 96vh;

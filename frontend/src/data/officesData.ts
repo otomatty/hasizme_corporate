@@ -123,7 +123,7 @@ export const offices: Office[] = [
     mapUrl:
       "https://www.google.com/maps/d/embed?mid=1qUj0Zkunj5L12GluU8mEvYMpleY&ehbc=2E312F",
     prefecture: "岩手県",
-    imageUrl: placeholderImageUrl,
+    imageUrl: "/images/hasizme-takata.png",
   },
   {
     name: "釜石支店",

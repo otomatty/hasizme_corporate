@@ -1,5 +1,5 @@
-import { For, Show, createSignal } from 'solid-js';
-import { useNavigate } from '@solidjs/router';
+import { For, Show, createSignal } from "solid-js";
+import { useNavigate } from "@solidjs/router";
 import {
   NavbarContainer,
   NavItem,
@@ -9,19 +9,20 @@ import {
   SubMenuContainer,
   SubMenuItem,
   SubMenuButton,
-} from './Navbar.styled';
+} from "./Navbar.styled";
 import {
   MenuItem,
   SubMenuItem as SubMenuItemType,
-} from '../../data/menuItemsData'; // SubMenuItemの型をインポート
-import { FaSolidChevronDown, FaSolidChevronRight } from 'solid-icons/fa';
+} from "../../data/menuItemsData";
+import { FaSolidChevronDown, FaSolidChevronRight } from "solid-icons/fa";
 
 interface NavbarProps {
   menuItems: MenuItem[];
   activeMenu: () => string | null;
   setActiveMenu: (menu: string | null) => void;
   isMobile: () => boolean;
-  closeMenu?: () => void; // オプションに変更
+  closeMenu?: () => void;
+  keepMegaMenuOpen: () => void;
 }
 
 function Navbar(props: NavbarProps) {
@@ -29,26 +30,45 @@ function Navbar(props: NavbarProps) {
   const [activeSubMenu, setActiveSubMenu] = createSignal<string | null>(null);
 
   const handleClick = (item: MenuItem) => {
-    if (item.subItems.length > 0) {
-      props.setActiveMenu(
-        props.activeMenu() === item.title ? null : item.title
-      );
-      setActiveSubMenu(activeSubMenu() === item.title ? null : item.title);
+    if (props.isMobile()) {
+      if (item.subItems.length > 0) {
+        props.setActiveMenu(
+          props.activeMenu() === item.title ? null : item.title
+        );
+        setActiveSubMenu(activeSubMenu() === item.title ? null : item.title);
+      } else {
+        navigate(item.link);
+        props.setActiveMenu(null);
+        if (props.closeMenu) {
+          props.closeMenu();
+        }
+      }
     } else {
       navigate(item.link);
-      props.setActiveMenu(null);
-      if (props.closeMenu) {
-        props.closeMenu(); // closeMenuが渡されている場合のみメニューを閉じる
+    }
+  };
+
+  const handleMouseEnter = (item: MenuItem) => {
+    if (!props.isMobile()) {
+      if (item.subItems.length > 0) {
+        props.setActiveMenu(item.title);
+      } else {
+        props.setActiveMenu(null);
       }
     }
   };
 
+  const handleMouseLeave = () => {
+    if (!props.isMobile()) {
+      props.keepMegaMenuOpen();
+    }
+  };
+
   const handleSubItemClick = (subItem: SubMenuItemType) => {
-    // 型を使用
     navigate(subItem.link);
     props.setActiveMenu(null);
     if (props.closeMenu) {
-      props.closeMenu(); // closeMenuが渡されている場合のみメニューを閉じる
+      props.closeMenu();
     }
   };
 
@@ -92,7 +112,10 @@ function Navbar(props: NavbarProps) {
       >
         <For each={props.menuItems}>
           {(item) => (
-            <NavItem>
+            <NavItem
+              onMouseEnter={() => handleMouseEnter(item)}
+              onMouseLeave={handleMouseLeave}
+            >
               <NavButton
                 onClick={() => handleClick(item)}
                 isActive={props.activeMenu() === item.title}
@@ -103,11 +126,11 @@ function Navbar(props: NavbarProps) {
                   <FaSolidChevronDown
                     size={16}
                     style={{
-                      transition: 'transform 0.3s ease',
+                      transition: "transform 0.3s ease",
                       transform:
                         props.activeMenu() === item.title
-                          ? 'rotate(180deg)'
-                          : 'rotate(0)',
+                          ? "rotate(180deg)"
+                          : "rotate(0)",
                     }}
                   />
                 )}
