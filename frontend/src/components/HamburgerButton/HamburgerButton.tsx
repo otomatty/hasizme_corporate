@@ -1,5 +1,9 @@
-import { Component } from 'solid-js';
-import { StyledHamburgerButton } from './HamburgerButton.styled';
+import { Component } from "solid-js";
+import {
+  StyledHamburgerButton,
+  HamburgerIcon,
+  MenuText,
+} from "./HamburgerButton.styled";
 
 interface HamburgerButtonProps {
   onClick: () => void;
@@ -8,9 +12,12 @@ interface HamburgerButtonProps {
 const HamburgerButton: Component<HamburgerButtonProps> = (props) => {
   return (
     <StyledHamburgerButton onClick={props.onClick}>
-      <span></span>
-      <span></span>
-      <span></span>
+      <HamburgerIcon>
+        <span></span>
+        <span></span>
+        <span></span>
+      </HamburgerIcon>
+      <MenuText>メニュー</MenuText>
     </StyledHamburgerButton>
   );
 };

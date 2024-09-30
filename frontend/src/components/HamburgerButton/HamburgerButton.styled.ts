@@ -1,7 +1,10 @@
-import { styled } from 'solid-styled-components';
+import { styled } from "solid-styled-components";
 
-export const StyledHamburgerButton = styled('button')`
-  display: block;
+export const StyledHamburgerButton = styled("button")`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background: none;
   border: none;
   cursor: pointer;
@@ -10,16 +13,14 @@ export const StyledHamburgerButton = styled('button')`
   @media (min-width: 375px) {
     width: 6rem;
     height: 6rem;
-    background: var(--primary-color); /* 背景色をprimary-colorに設定 */
+    background: var(--primary-color);
     border: none;
     border-radius: 0 0 0 50%;
-    cursor: pointer;
-    padding: 10px;
-    position: absolute; /* 追加 */
-    top: 0; /* ヘッダーの上に配置 */
+    position: absolute;
+    top: 0;
     right: -1rem;
-    z-index: 1001; /* ヘッダーの上に表示 */
-    color: #fff; /* 文字色を白に設定 */
+    z-index: 1001;
+    color: #fff;
   }
 
   @media (min-width: 768px) {
@@ -35,6 +36,13 @@ export const StyledHamburgerButton = styled('button')`
   @media (min-width: 1200px) {
     display: none;
   }
+`;
+
+export const HamburgerIcon = styled("div")`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   span {
     display: block;
@@ -42,14 +50,23 @@ export const StyledHamburgerButton = styled('button')`
     width: 2rem;
     height: 4px;
     border-radius: 4px;
-    margin: 8px auto;
+    margin: 4px 0;
     transition: all 0.3s ease;
 
     @media (min-width: 375px) {
       width: 2.4rem;
       height: 6px;
-      border-radius: 4px;
       background-color: #fff;
     }
+  }
+`;
+
+export const MenuText = styled("p")`
+  margin: 4px 0 0;
+  font-size: 0.8rem;
+  font-weight: bold;
+
+  @media (min-width: 375px) {
+    font-size: 1rem;
   }
 `;

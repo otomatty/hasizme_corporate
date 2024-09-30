@@ -23,10 +23,13 @@ export const ServicesWrapper = styled("div")`
   top: 0;
   height: 100vh;
   box-sizing: border-box;
-  padding-bottom: 3rem;
   box-sizing: border-box;
   overflow-y: hidden;
   transition: padding-top 0.3s ease;
+  padding-bottom: 1rem;
+  @media (min-width: 1024px) {
+    padding-bottom: 3rem;
+  }
 `;
 
 export const ServicesList = styled("div")`
@@ -79,7 +82,6 @@ export const ServiceCard = styled("div")<{ selected: boolean }>`
     &:hover {
       transform: scale(1.05);
       box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2);
-      padding: 1.5rem;
     }
   }
 `;

@@ -3,11 +3,11 @@ import { styled } from "solid-styled-components";
 export const HeroContainer = styled("section")`
   text-align: center;
   padding: 0.5rem;
-  min-height: 80vh;
 
   @media (min-width: 768px) {
     padding: 1rem;
     margin: 2rem 0;
+    min-height: 80vh;
   }
 `;
 
