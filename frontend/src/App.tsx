@@ -68,6 +68,12 @@ const App = (props: { children?: any }) => {
     }
   };
 
+  const keepMegaMenuOpen = () => {
+    if (activeMenu()) {
+      setActiveMenu(activeMenu());
+    }
+  };
+
   onMount(() => {
     window.addEventListener("resize", handleResize);
   });
@@ -91,6 +97,7 @@ const App = (props: { children?: any }) => {
           setActiveMenu={setActiveMenu}
           isMobile={isMobile}
           closeMenu={() => setIsMenuOpen(false)}
+          keepMegaMenuOpen={keepMegaMenuOpen}
         />
         <MobileContactButtons />
       </SlideInMenuContainer>
