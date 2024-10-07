@@ -121,7 +121,7 @@ function ServicesSection() {
         >
           <SectionTitle
             id="services-title"
-            title="取扱商品"
+            title="事業紹介"
             description="お客様のご要望にお応えするため、さまざまな商品をご用意しております。"
           />
           <ServicesContentWrapper
