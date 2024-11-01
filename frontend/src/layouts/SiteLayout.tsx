@@ -1,15 +1,15 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import Header from "@/components/site/Header/Header";
 import Footer from "@/components/site/Footer/Footer";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
+import useMediaQuery from "@/hooks/useMediaQuery";
 
 const SiteLayout = () => {
 	const [mainMarginTop, setMainMarginTop] = useState(0);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
-	const [isMobile, setIsMobile] = useState(window.innerWidth <= 1200);
-	// const [activeMenu, setActiveMenu] = useState<string | null>(null);
+	const isMobile = useMediaQuery("(max-width: 1200px)");
 
 	const setHeaderHeight = (height: number) => {
 		setMainMarginTop(height);
@@ -19,19 +19,11 @@ const SiteLayout = () => {
 		setIsMenuOpen(!isMenuOpen);
 	};
 
-	// handleResize関数をuseCallbackでメモ化
-	const handleResize = useCallback(() => {
-		setIsMobile(window.innerWidth <= 1200);
-		if (window.innerWidth > 1200) {
+	useEffect(() => {
+		if (!isMobile) {
 			setIsMenuOpen(false);
 		}
-	}, []);
-
-	// const keepMegaMenuOpen = () => {
-	// 	if (activeMenu) {
-	// 		setActiveMenu(activeMenu);
-	// 	}
-	// };
+	}, [isMobile]);
 
 	const handleOverlayClick = () => {
 		setIsMenuOpen(false);
@@ -42,13 +34,6 @@ const SiteLayout = () => {
 			setIsMenuOpen(false);
 		}
 	};
-
-	useEffect(() => {
-		window.addEventListener("resize", handleResize);
-		return () => {
-			window.removeEventListener("resize", handleResize);
-		};
-	}, [handleResize]);
 
 	return (
 		<>
