@@ -33,3 +33,6 @@ frontend/dist
 # Backend
 backend/node_modules
 backend/.wrangler
+
+#Bun
+bun.lockb

@@ -2,7 +2,7 @@
 	"name": "hasizme_corporate",
 	"version": "1.0.0",
 	"scripts": {
-		"build": "cd frontend && bun install && bun run build",
+		"build": "chmod +x ./build.sh && ./build.sh",
 		"dev": "cd frontend && bun run dev",
 		"backend:dev": "cd backend && wrangler dev",
 		"backend:deploy": "cd backend && wrangler publish"
@@ -36,6 +36,8 @@
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
 		"react-router-dom": "^6.27.0",
-		"tailwind-merge": "^2.5.4"
+		"tailwind-merge": "^2.5.4",
+		"@emotion/is-prop-valid": "^1.2.2",
+		"framer-motion": "^11.11.11"
 	}
 }
